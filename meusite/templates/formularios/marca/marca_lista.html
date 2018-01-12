@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Lista de Marcas{% endblock %}
+{% block content %}
+    <div class="center">
+      <h4>Lista de Marcas</h4>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Email</th>
+          <th>Telefone</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for marca in lista %}
+      <tr>
+       <td>{{ marca.marca_nome }}</td>
+        <td>{{ marca.marca_descricao }}</td>
+        <td>{{ marca.marca_email }}</td>
+        <td>{{ marca.marca_telefone }}</td>
+        <td>
+          <a href="{% url 'editar_marca' pk=marca.pk %}">
+       <i class="material-icons">mode_edit</i>
+          </a>
+          <a href="{% url 'remover_marca' pk=marca.pk %}">
+        <i class="material-icons">delete</i>
+         </a>
+        </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+{% endblock %}

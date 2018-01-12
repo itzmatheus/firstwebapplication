@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Lista de Clientes{% endblock %}
+{% block content %}
+    <div class="center">
+      <h4>Lista de Clientes</h4>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Data de nascimento</th>
+          <th>Email</th>
+          <th>Telefone</th>
+          <th>Sexo</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for cliente in lista %}
+      <tr>
+       <td>{{ cliente.pessoa_name }}</td>
+        <td>{{ cliente.pessoa_data }}</td>
+        <td>{{ cliente.pessoa_email }}</td>
+        <td>{{ cliente.pessoa_telefone }}</td>
+        <td>{{ cliente.pessoa_sexo }}</td>
+        <td>
+          <a href="{% url 'editar_cliente' pk=cliente.pk %}">
+            <i class="material-icons">mode_edit</i>
+          </a>
+          <a href="{% url 'remover_cliente' pk=cliente.pk %}">
+            <i class="material-icons">delete</i>
+         </a>
+        </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+
+{% endblock %}

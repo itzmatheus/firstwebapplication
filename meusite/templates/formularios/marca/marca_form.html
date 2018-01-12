@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Cadastrar Marca{% endblock %}
+{% block content %}
+
+
+<div class="container">
+<form method="post">
+  {% csrf_token %}
+  <div class="center">
+    <h6 style="margin-top:2%">Cadastrar Marca</h6>
+    <span>Ficha de cadastro</span>
+  </div>
+  <div class="card-panel z-depth-4 row">
+      <div class="input-field" >
+          <input type="text" name="marca_nome" value="" maxlength="50" required="" id="id_marca_nome">
+          <label for="{{form.marca_nome.id_for_label}}">Nome<span id="valNome" style="color:red">*</span></label>
+       </div>
+      <div class="input-field">
+          <input type="text" name="marca_descricao" value="" maxlength="100" id="id_marca_descricao">
+          <label for="{{form.marca_descricao.id_for_label}}">Descrição</label>
+       </div>
+     <div class="input-field">
+         <input type="email" name="marca_email" value="" maxlength="50" id="id_marca_email">
+         <label for="{{form.marca_email.id_for_label}}">Email</label>
+      </div>
+      <div class="input-field">
+          <input type="text" name="marca_telefone" value="" maxlength="11"  id="id_marca_telefone">
+          <label for="{{form.marca_telefone.id_for_label}}" >Telefone</label>
+       </div>
+
+    </div>
+  <div class="center">
+  <button type="submit" class="btn waves-effect waves-light" name="action">Salvar</button>
+  </div>
+ </form>
+</div>
+
+
+{% endblock %}
