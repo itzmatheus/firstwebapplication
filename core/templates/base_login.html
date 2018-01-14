@@ -39,7 +39,11 @@
        {% if messages %}
            {% for message in messages %}
            $(document).ready(function(){
-                Materialize.toast("{{ message }}", 4000, 'rounded');
+             var $toastContent = $('<span>{{ message }}</span>').add($('<button class="btn-flat toast-action" id="button_toast">Ok</button>'));
+             Materialize.toast($toastContent, 10000);
+             $('#button_toast').click(function(){
+               Materialize.Toast.removeAll();
+             });
            });
            {% endfor %}
        {% endif %}

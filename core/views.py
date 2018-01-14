@@ -31,10 +31,11 @@ def cadastrar_usuario(request):
                     user = User.objects.create_user(username=username,email=email,password=password,first_name=first_name,last_name=last_name,is_active=True, is_staff=True, is_superuser=True)
                 elif tipo_usuario == 'funcionario':
                     user = User.objects.create_user(username=username,email=email,password=password,first_name=first_name,last_name=last_name,is_active=True, is_staff=True, is_superuser=False)
+                messages.success(request, 'Usuário {} cadastrado com sucesso!'.format(username))
                 return redirect('index')
         form = UsuarioForm()
     else:
-        messages.warning(request, 'Permissão negada!')
+        messages.error(request, 'Usuário {} não possui permissão para acessar essa página!'.format(user.username))
         return redirect('index')
     return render(request, 'formularios/usuario/usuario_form.html', {'form':form})
 
@@ -46,7 +47,7 @@ def listar_usuarios(request):
         usuario = User.objects.all()
         usuarios = {'lista':usuario}
     else:
-        messages.error(request, 'Permissão negada!')
+        messages.error(request, 'Usuário {} não possui permissão para acessar essa página!'.format(user.username))
         return redirect('index')
     return render(request, 'formularios/usuario/usuario_list.html', usuarios)
 #Editar
@@ -66,7 +67,7 @@ def editar_usuario(request, pk):
         else:
             form = UsuarioForm(instance=usuario)
     else:
-        messages.error(request, 'Permissão negada!')
+        messages.error(request, 'Usuário {} não possui permissão para acessar essa página!'.format(user.username))
         return redirect('index')
     return render(request, 'formularios/usuario/usuario_edit.html', {'form':
         form})
@@ -80,10 +81,10 @@ def remover_usuario(request, pk):
         name = usuario.username
         if request.method == 'POST':
             usuario.delete()
-            messages.warning(request, 'Usuário {} removido com sucesso!'.format(name))
+            messages.error(request, 'Usuário {} removido com sucesso!'.format(name))
             return redirect('listar_usuarios')
     else:
-        messages.error(request, 'Permissão negada!')
+        messages.error(request, 'Usuário {} não possui permissão para acessar essa página!'.format(user.username))
         return redirect('index')
     return render(request, 'formularios/usuario/usuario_delete.html',
         {'usuario':usuario})
