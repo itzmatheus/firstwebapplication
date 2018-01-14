@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import logout, authenticate, login
 from Projeto.settings import LOGIN_URL
+from django.contrib import messages
 
 ################################################################
 #                                                              #
@@ -33,7 +34,8 @@ def cadastrar_usuario(request):
                 return redirect('index')
         form = UsuarioForm()
     else:
-        return HttpResponse('Permissão negada!')
+        messages.warning(request, 'Permissão negada!')
+        return redirect('index')
     return render(request, 'formularios/usuario/usuario_form.html', {'form':form})
 
 #Listar
@@ -44,7 +46,8 @@ def listar_usuarios(request):
         usuario = User.objects.all()
         usuarios = {'lista':usuario}
     else:
-        return HttpResponse('Permissão negada!')
+        messages.error(request, 'Permissão negada!')
+        return redirect('index')
     return render(request, 'formularios/usuario/usuario_list.html', usuarios)
 #Editar
 @login_required
@@ -56,14 +59,15 @@ def editar_usuario(request, pk):
             form = UsuarioForm(request.POST, instance=usuario)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect('/listar_usuarios/')
+                return HttpResponseRedirect('listar_usuarios')
             # else:
             #     return render(request, 'formularios/usuario/usuario_edit.html',
             #         {'form':form})
         else:
             form = UsuarioForm(instance=usuario)
     else:
-        return HttpResponse('Permissão negada!')
+        messages.error(request, 'Permissão negada!')
+        return redirect('index')
     return render(request, 'formularios/usuario/usuario_edit.html', {'form':
         form})
 
@@ -77,7 +81,8 @@ def remover_usuario(request, pk):
             usuario.delete()
             return HttpResponseRedirect('/listar_usuarios/')
     else:
-        return HttpResponse('Permissão negada!')
+        messages.error(request, 'Permissão negada!')
+        return redirect('index')
     return render(request, 'formularios/usuario/usuario_delete.html',
         {'usuario':usuario})
 # Login
@@ -91,6 +96,7 @@ def logar(request):
             login(request, user)
             return  HttpResponseRedirect(next)
         else:
+            messages.error(request, 'Usuário e senha incorretos!')
             return HttpResponseRedirect(LOGIN_URL)
     return render(request, 'registration/login.html', {'redirect_to':next})
 

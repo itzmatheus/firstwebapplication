@@ -1,6 +1,6 @@
 {% extends 'base_login.html' %}
 {% load staticfiles %}
-{% block title %}Autenticação{% endblock %}
+{% block title %}Alteração de senha{% endblock %}
 {% block content %}
 <!-- .?next={{redirect_to}} -->
 <!-- Serve para gravar a última página que o usuário tentou acessar -->
@@ -21,6 +21,7 @@ body {
         <div class="center">
           <img src="https://i.imgur.com/a4bYTa2.png">
         </div>
+        <h5>Alteração de senha</h5>
           <div class="input-field">
               <input type="password" name="old_password" value="" maxlength="30" id='id_old_password'>
               <label for="id_password">Senha antiga</label>

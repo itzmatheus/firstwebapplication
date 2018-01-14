@@ -236,5 +236,16 @@
        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
        <!-- <script type="text/javascript" src="static/js/materialize.min.js"></script> -->
        <script src="{% static 'js/aplicativo.js' %}"></script>
+       
+       <!-- Script para retornar erros nas páginas em forma de toast -->
+       <script>
+       {% if messages %}
+           {% for message in messages %}
+           $(document).ready(function(){
+                Materialize.toast("{{ message }}", 4000, 'rounded');
+           });
+           {% endfor %}
+       {% endif %}
+       </script>
 </body>
 </html>
