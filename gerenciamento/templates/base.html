@@ -236,13 +236,19 @@
        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
        <!-- <script type="text/javascript" src="static/js/materialize.min.js"></script> -->
        <script src="{% static 'js/aplicativo.js' %}"></script>
-       
+
        <!-- Script para retornar erros nas páginas em forma de toast -->
        <script>
        {% if messages %}
            {% for message in messages %}
            $(document).ready(function(){
-                Materialize.toast("{{ message }}", 4000, 'rounded');
+             // Função para aparecer o toast
+              var $toastContent = $('<span>{{ message }}</span>').add($('<button class="btn-flat toast-action" id="button_toast">Ok</button>'));
+              Materialize.toast($toastContent, 10000);
+              // Função para remover todos os toasts quando clicar no botão "Ok"
+              $('#button_toast').click(function(){
+                Materialize.Toast.removeAll();
+              });
            });
            {% endfor %}
        {% endif %}

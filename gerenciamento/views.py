@@ -4,6 +4,7 @@ from gerenciamento.forms import ClienteForm, MarcaForm, ProdutoForm
 from django.shortcuts import render, redirect
 from gerenciamento.models import Cliente, Marca, Produto
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 ################################################################
 #                                                              #
@@ -13,11 +14,12 @@ from django.contrib.auth.decorators import login_required
 # Cadastrar
 @login_required
 def cadastrar_cliente(request):
-    form = ClienteForm(request.POST)
     if request.method == 'POST':
+        form = ClienteForm(request.POST)
         try:
             if form.is_valid():
                 form.save()
+                messages.success(request, 'Cliente {} cadastrado com sucesso!'.format(request.POST['pessoa_name']))
                 return redirect('listar_clientes')
         except:
             return HttpResponse('Formulário Inválido, retorna página')
@@ -42,6 +44,7 @@ def editar_cliente(request, pk):
         form = ClienteForm(request.POST, instance=cliente)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Cliente alterado com sucesso!')
             return redirect('listar_clientes')
     else:
         form = ClienteForm(instance=cliente)
@@ -53,6 +56,7 @@ def remover_cliente(request, pk):
     cliente = Cliente.objects.get(pk=pk)
     if request.method == 'POST':
         cliente.delete()
+        messages.success(request, 'Cliente {} removido com sucesso!'.format(cliente.pessoa_name))
         return redirect('listar_clientes')
     return render(request, 'formularios/cliente/cliente_delete.html',
         {'cliente':cliente})
@@ -70,6 +74,7 @@ def cadastrar_marca(request):
         try:
             if form.is_valid():
                 form.save()
+                messages.success(request, 'Marca {} cadastrado com sucesso!'.format(request.POST['marca_nome']))
                 return redirect('listar_marcas')
         except:
             return HttpResponse('Formulário Inválido, retorna página')
@@ -90,6 +95,7 @@ def editar_marca(request, pk):
         form = MarcaForm(request.POST, instance=marca)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Marca alterada com sucesso!')
             return redirect('listar_marcas')
     else:
         form = MarcaForm(instance=marca)
@@ -101,6 +107,7 @@ def remover_marca(request, pk):
     marca = Marca.objects.get(pk=pk)
     if request.method == 'POST':
         marca.delete()
+        messages.success(request, 'Marca {} removida com sucesso!'.format(marca.marca_nome))
         return redirect('listar_marcas')
     return render(request, 'formularios/marca/marca_delete.html',
         {'marca':marca})
@@ -118,6 +125,7 @@ def cadastrar_produto(request):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+            messages.success(request, 'Produto {} cadastrado com sucesso!'.format(request.POST['produto_nome']))
             return redirect('listar_produtos')
     else:
         form = ProdutoForm()
@@ -137,6 +145,7 @@ def editar_produto(request, pk):
         form = ProdutoForm(request.POST, instance=produto)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Produto alterado com sucesso!')
             return redirect('listar_produtos')
     else:
         form = ProdutoForm(instance=produto)
@@ -148,6 +157,7 @@ def remover_produto(request, pk):
     produto = Produto.objects.get(pk=pk)
     if request.method == 'POST':
         produto.delete()
+        messages.success(request, 'Produto {} removida com sucesso!'.format(produto.produto_nome))
         return redirect('listar_produtos')
     return render(request, 'formularios/produto/produto_delete.html',
         {'produto':produto})
