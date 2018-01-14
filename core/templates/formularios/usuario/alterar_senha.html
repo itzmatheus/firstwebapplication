@@ -1,0 +1,47 @@
+{% extends 'base_login.html' %}
+{% load staticfiles %}
+{% block title %}Autenticação{% endblock %}
+{% block content %}
+<!-- .?next={{redirect_to}} -->
+<!-- Serve para gravar a última página que o usuário tentou acessar -->
+<style>
+body {
+  background-color: #00796b;
+}
+#form {
+  width: 350px;
+  padding-top: 15px;
+}
+
+</style>
+<div class="container" id='form'>
+  <form method="post">{% csrf_token %}
+    <div class="center">
+      <div class="card-panel z-depth-5 row">
+        <div class="center">
+          <img src="https://i.imgur.com/a4bYTa2.png">
+        </div>
+          <div class="input-field">
+              <input type="password" name="old_password" value="" maxlength="30" id='id_old_password'>
+              <label for="id_password">Senha antiga</label>
+            </div>
+          <div class="input-field">
+              <input type="password" name="new_password" value="" maxlength="30" id='id_new_password'>
+              <label for="id_password">Nova senha</label>
+            </div>
+            <div class="input-field">
+                <input type="password" name="confirm_password" value="" maxlength="30" id='id_confirm_password'>
+                <label for="id_password">Confirme nova senha</label>
+              </div>
+            <br>
+            <div class='row'>
+          <button class="btn waves-effect waves-light" type="submit" name="login">Alterar senha</button>
+            </div>
+        </div>
+      </div>
+    </form>
+    <div class="center">
+      <a class="white-text" href="#">Copyright © 2018 <b>AKZO</b><br>Todos os direitos reservados</a>
+    </div>
+</div>
+{% endblock %}

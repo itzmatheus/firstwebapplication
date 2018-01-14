@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="pt-br">
+<head>
+
+  <meta charset="UTF-8">
+  <title>
+    {% block title %}
+    {% endblock %}
+  </title>
+
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+      <!-- <link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/> -->
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+<style>
+
+/*Adequação da página a sidebar-nav e footer */
+  main, footer {
+    padding-left: 300px;
+  }
+  @media only screen and (max-width : 992px) {
+    header, main, footer {
+      padding-left: 0;
+    }
+  }
+
+  h6{
+      font-weight: bold;
+  }
+
+/* dropdown navbar */
+  .dropdown-content{
+      margin: 50px 0px !important;
+  }
+
+  /* dropdown font color */
+  .dropdown-content li > a, .dropdown-content li > span {
+      color: #000;
+  }
+
+  .navicons{
+      margin-top: 2px;
+  }
+
+  .navbararrow{
+      margin-top: 4px;
+  }
+
+  /* Footer */
+
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #e0f7fa;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+
+  /* Ajuste de tamanho da navbar */
+  nav {
+      height: 50px;
+      line-height: 50px;
+  }
+
+  nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
+      height: 50px;
+      line-height: 50px;
+  }
+
+  nav .button-collapse i {
+      height: 50px;
+      line-height: 50px;
+  }
+
+  nav .brand-logo {
+      font-size: 1.8rem;
+  }
+
+  nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+    height: 50px;
+    line-height: 50px;
+  }
+  /* Sidebar Styles */
+
+#logo {
+  width: 150px;
+  display: block;
+  margin: auto;
+}
+.side-nav {
+  width: 300px;
+  position: absolute;
+  top: 0;
+  width: 300px;
+  margin: 0;
+  padding: 0;
+}
+.side-nav li>a {
+    color: #aaaaaa;
+    margin-left: 30px;
+    display: block;
+}
+.side-nav li>a>i.material-icons {
+    color: #aaaaaa;
+    margin-right: 50px;
+    display: block;
+}
+
+#logo-name-sidebar{
+  font-size: 20px;
+  margin-top: -2px;
+  margin-bottom: 40px;
+  color: #aaaaaa;
+}
+</style>
+
+</head>
+<body>
+
+
+  <!-- HEADER -->
+  <header class="nav-wrapper teal darken-2 z-depth-0">
+    <nav class="teal darken-2 z-depth-0">
+        <ul>
+          <li>
+            <a href="javascript:void(0)" data-activates="slide-out" class="button-collapse hide-on-large-only">
+              <i class="material-icons navicons">dehaze</i>
+            </a>
+          </li>
+        </ul>
+        <ul>
+          <li class="dropdown-button right hide-on-med-and-down" data-activates='dropdown2'>
+            <a href="javascript:void(0)">
+              <i class="material-icons left navicons">more_vert</i>
+            </a>
+            <!-- Dropdown Structure -->
+            <ul id='dropdown2' class='dropdown-content'>
+              <li><a href="{% url 'alterar_senha' pk=request.user.pk %}" class="center">Mudar Senha</a></li>
+              <li><a href="{% url 'deslogar' %}" class="center">Sair</a></li>
+              <!-- <li class="divider"></li> -->
+            </ul>
+          </li>
+          <li class="right hide-on-med-and-down">
+            <a href="#">
+              <i class="material-icons left navicons">today</i>
+              <span>Calendário</span>
+            </a>
+          </li>
+          <li class="right hide-on-med-and-down">
+            <a href="#">
+              <i class="material-icons left navicons">search</i>
+              <span>Buscar</span>
+            </a>
+          </li>
+        </ul>
+    </nav>
+  </header>
+
+  <!-- Sidenav Structure -->
+  <ul id='slide-out' class='side-nav fixed blue-grey darken-4 z-depth-4'>
+
+    <li>
+      <div id='logo'>
+        <a href="{% url 'index' %}" id='logosidebar' class='circle center'>
+          <img src="{% static 'img\logo.svg' %}" class="circle center">
+          <h5 id="logo-name-sidebar">Gerenciamento</h5>
+        </a>
+      </div>
+    </li>
+    <li class="no-padding">
+      <ul class="collapsible collapsible-accordion">
+        <li>
+          <a class="collapsible-header"><i class="material-icons right">assignment</i>Produtos</a>
+          <div class="collapsible-body blue-grey darken-3">
+            <ul>
+              <li> <a href="{% url 'cadastrar_produto' %}">Cadastrar produto</a> </li>
+              <li> <a href="{% url 'listar_produtos' %}">Listar produtos cadastrados</a> </li>
+              <li> <a href="{% url 'cadastrar_marca' %}">Cadastrar marca</a> </li>
+              <li> <a href="{% url 'listar_marcas' %}">Listar produtos cadastrados</a> </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li class="no-padding">
+      <ul class="collapsible collapsible-accordion">
+        <li>
+          <a class="collapsible-header"><i class="material-icons right">assignment_ind</i>Clientes</a>
+          <div class="collapsible-body blue-grey darken-3">
+            <ul>
+              <li> <a href="{% url 'cadastrar_cliente' %}">Cadastrar clientes</a> </li>
+              <li> <a href="{% url 'listar_clientes' %}">Listar clientes cadastrados</a> </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li> <a class="waves-effect" href="#"><i class="material-icons right">store_mall_directory</i>Loja</a> </li>
+    {% if request.user.is_superuser %}
+    <li> <a class="waves-effect" href="#"><i class="material-icons right">assessment</i>Relatorios</a></li>
+    <li class="no-padding">
+      <ul class="collapsible collapsible-accordion">
+        <li>
+          <a class="collapsible-header"><i class="material-icons right">perm_identity</i>Usuários</a>
+          <div class="collapsible-body blue-grey darken-3">
+            <ul>
+              <li> <a href="{% url 'cadastrar_usuario' %}">Cadastrar usuarios</a> </li>
+              <li> <a href="{% url 'listar_usuarios' %}">Listar usuarios cadastrados</a> </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
+    {% endif %}
+  </ul>
+<!-- Fim sidebar -->
+<main>
+  {% block content %}
+
+  {% endblock %}
+</main>
+
+      <!-- Import JQuery before JS -->
+       <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+       <!-- Materialize JS -->
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+       <!-- <script type="text/javascript" src="static/js/materialize.min.js"></script> -->
+       <script src="{% static 'js/aplicativo.js' %}"></script>
+</body>
+</html>

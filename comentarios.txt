@@ -1,0 +1,9 @@
+1 - Comentário Erro em imports do materialize css e javascript em demais páginas
+Percebe-se um erro em algumas páginas quando extende o base.html possuindo os imports locais do materialize css e javascript
+não importarem em todas, sendo necessario para corrigir importar via cdn.
+
+Códigos para usar:
+forms.py >
+pessoa_sexo = forms.ModelChoiceField(widget=forms.Select(),
+                                  queryset=Cliente.objects.all())
+Faz um select de uma tabela em forma de Select.

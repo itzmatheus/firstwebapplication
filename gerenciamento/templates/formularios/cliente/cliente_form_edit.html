@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Editar Cliente{% endblock %}
+{% block content %}
+<div class="container">
+<form method="post">
+  {% csrf_token %}
+  <div class="center">
+    <h6 style="margin-top:2%">Editar Cliente</h6>
+    <span>Campos</span>
+  </div>
+  <div class="card-panel z-depth-4 row">
+    <!-- {{ form }} -->
+    <div class="input-field" >
+       {{form.pessoa_name}}
+       <label for="{{form.pessoa_name.id_for_label}}">Nome completo</label>
+    </div>
+    <div class="input-field">
+      {{form.pessoa_data}}
+      <label for="{{form.pessoa_data.id_for_label}}">Data de nascimento</label>
+    </div>
+    <div class="input-field">
+      {{form.pessoa_email}}
+      <label for="{{form.pessoa_email.id_for_label}}">Email</label>
+    </div>
+    <div class="input-field">
+      {{form.pessoa_telefone}}
+      <label for="{{form.pessoa_telefone.id_for_label}}">Telefone</label>
+    </div>
+    <div class="input-field">
+      {{form.pessoa_sexo}}
+      <label for="{{form.pessoa_sexo.id_for_label}}">Informe o sexo:
+        <span>Masculino, Feminino ou Indefinido</span></label>
+    </div>
+
+  <div class="center">
+  <button type="submit" class="btn waves-effect waves-light" name="action">Salvar</button>
+  </div>
+ </form>
+</div>
+
+
+{% endblock %}

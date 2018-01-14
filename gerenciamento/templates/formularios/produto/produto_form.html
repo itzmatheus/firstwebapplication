@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Cadastrar Produto{% endblock %}
+{% block content %}
+
+
+<div class="container">
+<form enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+  {% if form.errors %}
+      {% for field in form %}
+          {% for error in field.errors %}
+          <div id="modal2" class="modal">
+              <div class="modal-content center">
+                <h5>Atenção!</h5><br>
+                <div class="center">
+                  <span>{{ error|escape }}</span>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="modal-close btn-flat" name="button">Continuar</button>
+              </div>
+          </div>
+          {% endfor %}
+      {% endfor %}
+  {% endif %}
+  <div class="center">
+    <h6 style="margin-top:2%">Cadastrar Produto</h6>
+    <span>Ficha de cadastro</span>
+  </div>
+  <div class="card-panel z-depth-4 row">
+      <div class="input-field">
+          <input type="text" name="produto_nome" value="" maxlength="30" required="" id='id_produto_nome'>
+          <label for="{{form.produto_nome.id_for_label}}">Nome</label>
+        </div>
+      <div class="input-field">
+          <input type="text" name="produto_descricao" value="" maxlength="100" id="id_produto_descricao">
+          <label for="{{form.produto_descricao.id_for_label}}">Descrição</label>
+        </div>
+      <div class="input-field">
+          <input type="text" name="produto_data_compra" class="datepicker" value="" id="id_produto_data_compra">
+          <label for="{{form.produto_data_compra.id_for_label}}">Data de compra</label>
+      </div>
+      <div class="input-field">
+          <select name="produto_marca">
+              <option value="" disabled selected >---------</option>
+              {% for marca in marca %}
+              <option value="{{marca.pk}}">{{marca.marca_nome}}</option>
+              {% endfor %}
+          </select>
+          <label for="{{form.produto_marca.id_for_label}}">Marca</label>
+        </div>
+      <div class="input-field">
+          <input type="text" name="produto_tipo" maxlength="20" value="" id="id_produto_tipo">
+          <label for="{{form.produto_tipo.id_for_label}}">Tipo</label>
+      </div>
+      <div class="input-field">
+          <input type="text" name="produto_cor" value="" maxlength="20" id="id_produto_cor">
+          <label for="{{form.produto_cor.id_for_label}}">Cor</label>
+      </div>
+      <div class="input-field">
+          <select name="produto_tamanho" id="id_produto_tamanho">
+            <option value="" disabled selected>Selecione o tamanho</option>
+              <option value="PP">Pequeno Pequeno</option>
+              <option value="P">Pequeno</option>
+              <option value="M">Médio</option>
+              <option value="G">Grande</option>
+              <option value="MG">Muito Grande</option>
+          </select>
+          <label for="{{form.produto_tamanho.id_for_label}}">Tamanho</label>
+        </div>
+      <div class="input-field">
+          <input type="number" name="produto_valor_compra" value="" maxlength="10" id="id_produto_valor_compra">
+          <label for="{{form.produto_valor_compra.id_for_label}}">Valor de compra</label>
+      </div>
+      <div class="input-field">
+        {{form.produto_foto}}
+        <label for="{{form.produto_foto.id_for_label}}"></label>
+      </div>
+
+    </div>
+  <div class="center">
+  <button type="submit" class="btn waves-effect waves-light" name="action">Salvar</button>
+  </div>
+ </form>
+</div>
+
+{% endblock %}

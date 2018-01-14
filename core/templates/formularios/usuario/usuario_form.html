@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Cadastrar usuário{% endblock %}
+{% block content %}
+
+<div class="container">
+<form method="post">
+  {% csrf_token %}
+  <div class="center">
+    <h6 style="margin-top:2%">Cadastrar Usuário</h6>
+    <span>Ficha de cadastro</span>
+  </div>
+  <div class="card-panel z-depth-4 row">
+    <div class="input-field">
+      <input type="text" name="last_name" id='id_last_name' maxlength="50" value="">
+      <label for="{{form.last_name.id_for_label}}">Nome completo</label>
+    </div>
+    <div class="input-field">
+      <input type="email" name="email" id='id_email' maxlength="50" value="">
+      <label for="{{form.email.id_for_label}}">Email</label>
+    </div>
+    <div class="input-field">
+      <input type="text" name="first_name" id='id_first_name' maxlength='11' value="">
+      <label for="{{form.first_name.id_for_label}}">Telefone</label>
+    </div>
+    <div class="input-field col s6">
+      <input type="text" name="username" maxlength="30" id='id_username' value="">
+      <label for="{{form.username.id_for_label}}">Username</label>
+    </div>
+    <div class="input-field col s6">
+      <input type="password" name="password" maxlength="30" id='id_password' value="">
+      <label for="{{form.password.id_for_label}}">Password</label>
+    </div>
+    <div class="input-field col s6">
+        <select id='id_tipo_usuario' name="tipo_usuario">
+          <option value="" selected disabled>Selecione o tipo de usuário</option>
+          <option value="super_user">Gerente</option>
+          <option value="funcionario">Funcionário</option>
+        </select>
+      <label for="{{form.tipo_usuario.id_for_label}}">Tipo de usuário</label>
+    </div>
+    </div>
+  <div class="center">
+  <button type="submit" class="btn waves-effect waves-light" name="action">Salvar</button>
+  </div>
+ </form>
+</div>
+
+{% endblock %}
