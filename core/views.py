@@ -77,9 +77,11 @@ def remover_usuario(request, pk):
     user = request.user
     if user.is_superuser:
         usuario = User.objects.get(pk=pk)
+        name = usuario.username
         if request.method == 'POST':
             usuario.delete()
-            return HttpResponseRedirect('/listar_usuarios/')
+            messages.warning(request, 'Usuário {} removido com sucesso!'.format(name))
+            return redirect('listar_usuarios')
     else:
         messages.error(request, 'Permissão negada!')
         return redirect('index')
