@@ -106,6 +106,7 @@ def logar(request):
 #Deslogar
 def deslogar(request):
     logout(request)
+    messages.success(request, 'Deslogado com sucesso')
     return HttpResponseRedirect(LOGIN_URL)
 
 #Alterar senha
