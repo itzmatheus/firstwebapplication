@@ -145,6 +145,7 @@ def cadastrar_produto(request):
     marca = Marca.objects.all().order_by('marca_nome')
     if request.method == 'POST':
         if form.is_valid():
+            print(form.cleaned_data)
             form.save()
             messages.success(request, 'Produto {} cadastrado com sucesso!'.format(request.POST['produto_nome']))
             return redirect('listar_produtos')

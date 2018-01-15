@@ -20,8 +20,8 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'usuario/', include('core.urls')),
-    url(r'gerenciamento/', include('gerenciamento.urls'))
+    path(r'usuario/', include('core.urls')),
+    path(r'gerenciamento/', include('gerenciamento.urls'))
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 #Isso acima, primeiramente recebe o MEDIA_URL do settings base, e o diretório
 # root dos arquivos

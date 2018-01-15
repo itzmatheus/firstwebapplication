@@ -32,7 +32,7 @@ class MarcaForm(forms.ModelForm):
         attrs={'class':'form-control'}), required=False)
     marca_telefone = forms.CharField(widget=forms.TextInput(
         attrs={'class':'form-control'}), required=False)
-    marca_slug = forms.SlugField(widget=forms.TextInput(
+    marca_slug = forms.SlugField(label='Atalho', widget=forms.TextInput(
         attrs={'class':'vTextField'}))
 
     class Meta:
