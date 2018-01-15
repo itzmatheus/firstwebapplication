@@ -23,3 +23,5 @@ urlpatterns = [
     url(r'usuario/', include('core.urls')),
     url(r'gerenciamento/', include('gerenciamento.urls'))
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#Isso acima, primeiramente recebe o MEDIA_URL do settings base, e o diretório
+# root dos arquivos
