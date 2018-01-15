@@ -12,19 +12,23 @@
   <div class="card-panel z-depth-4 row">      <!-- {{ form }} -->
       <div class="input-field" >
          {{form.marca_nome}}
-         <label for="{{form.pessoa_name.id_for_label}}">Nome<span id="valNome" style="color:red">*</span></label>
+         <label for="{{form.marca_nome.id_for_label}}">Nome<span id="valNome" style="color:red">*</span></label>
       </div>
       <div class="input-field">
         {{form.marca_descricao}}
-        <label for="{{form.pessoa_data.id_for_label}}">Data de nascimento</label>
+        <label for="{{form.marca_descricao.id_for_label}}">Descrição</label>
       </div>
       <div class="input-field">
         {{form.marca_email}}
-        <label for="{{form.pessoa_email.id_for_label}}">Email</label>
+        <label for="{{form.marca_email.id_for_label}}">Email</label>
       </div>
       <div class="input-field">
         {{form.marca_telefone}}
-        <label for="{{form.pessoa_telefone.id_for_label}}">Telefone</label>
+        <label for="{{form.marca_telefone.id_for_label}}">Telefone</label>
+      </div>
+      <div class="input-field">
+        {{form.marca_slug}}
+        <label for="{{form.marca_slug.id_for_label}}">Atalho</label>
       </div>
   <div class="center">
   <button type="submit" class="btn waves-effect waves-light" name="action">Salvar</button>

@@ -89,8 +89,8 @@ def listar_marcas(request):
     return render(request, 'formularios/marca/marca_lista.html', marcas)
 # Editar
 @login_required
-def editar_marca(request, pk):
-    marca = get_object_or_404(Marca, pk=pk)
+def editar_marca(request, marca_slug):
+    marca = get_object_or_404(Marca, marca_slug=marca_slug)
     if request.method == 'POST':
         form = MarcaForm(request.POST, instance=marca)
         if form.is_valid():
@@ -101,16 +101,37 @@ def editar_marca(request, pk):
         form = MarcaForm(instance=marca)
     return render(request, 'formularios/marca/marca_form_edit.html',
         {'form': form})
+# @login_required
+# def editar_marca(request, pk):
+#     marca = get_object_or_404(Marca, pk=pk)
+#     if request.method == 'POST':
+#         form = MarcaForm(request.POST, instance=marca)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, 'Marca alterada com sucesso!')
+#             return redirect('listar_marcas')
+#     else:
+#         form = MarcaForm(instance=marca)
+#     return render(request, 'formularios/marca/marca_form_edit.html',
+#         {'form': form})
 # Excluir
 @login_required
-def remover_marca(request, pk):
-    marca = Marca.objects.get(pk=pk)
+def remover_marca(request, marca_slug):
+    marca = Marca.objects.get(marca_slug=marca_slug)
     if request.method == 'POST':
         marca.delete()
         messages.success(request, 'Marca {} removida com sucesso!'.format(marca.marca_nome))
         return redirect('listar_marcas')
     return render(request, 'formularios/marca/marca_delete.html',
         {'marca':marca})
+# def remover_marca(request, pk):
+#     marca = Marca.objects.get(pk=pk)
+#     if request.method == 'POST':
+#         marca.delete()
+#         messages.success(request, 'Marca {} removida com sucesso!'.format(marca.marca_nome))
+#         return redirect('listar_marcas')
+#     return render(request, 'formularios/marca/marca_delete.html',
+#         {'marca':marca})
 
 ################################################################
 #                                                              #
