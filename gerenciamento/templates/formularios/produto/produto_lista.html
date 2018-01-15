@@ -23,7 +23,11 @@
       <tbody>
     {% for produto in lista %}
       <tr>
+        {% if produto.produto_foto %}
         <td><img src="{{produto.produto_foto.url}}" style="width:60px"></td>
+        {% else %}
+        <td><img src="{% static 'img\Produto-Sem-Imagem.jpg' %}" style="width:60px"></td>
+        {% endif %}
        <td>{{ produto.produto_nome }}</td>
         <td>{{ produto.produto_descricao }}</td>
         <td>{{ produto.produto_data_compra }}</td>

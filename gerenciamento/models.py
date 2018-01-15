@@ -42,7 +42,7 @@ class Produto(models.Model):
     produto_cor = models.CharField(max_length=20)
     produto_tamanho = models.CharField(max_length=2,choices=TAMANHO_CHOICES)
     produto_valor_compra = models.FloatField(max_length=10, null=False)
-    produto_foto = models.ImageField(upload_to='images/produto_foto')
+    produto_foto = models.ImageField(upload_to='images/produto_foto', null=True, blank=True)
 
     def __str__(self):
         return self.produto_nome
