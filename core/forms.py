@@ -37,14 +37,14 @@ class UsuarioForm(forms.ModelForm):
         model = User
         fields = ['username', 'email', 'telefone','name', 'password1', 'password2']
 
-# class AlterarSenhaForm(forms.ModelForm):
-#     old_password = forms.CharField(label='Senha antiga', widget=forms.PasswordInput(
-#         attrs={'class':'form-control'}))
-#     new_password = forms.CharField(label='Nova senha', widget=forms.PasswordInput(
-#         attrs={'class':'form-control'}))
-#     confirm_password = forms.CharField(label='Confirme nova senha', widget=forms.PasswordInput(
-#         attrs={'class':'form-control'}))
-#
-#     class Meta:
-#         model = User
-#         fields = ['old_password']
+class AlterarSenhaForm(forms.ModelForm):
+    old_password = forms.CharField(label='Senha antiga', widget=forms.PasswordInput(
+        attrs={'class':'form-control'}))
+    new_password = forms.CharField(label='Nova senha', widget=forms.PasswordInput(
+        attrs={'class':'form-control'}))
+    confirm_password = forms.CharField(label='Confirme nova senha', widget=forms.PasswordInput(
+        attrs={'class':'form-control'}))
+
+    class Meta:
+        model = User
+        fields = ['old_password', 'new_password', 'confirm_password']

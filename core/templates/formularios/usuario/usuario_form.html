@@ -43,11 +43,6 @@
     <div class="input-field col s6">
       <input type="text" name="username" maxlength="30" id='id_username' value="">
       <label for="{{form.username.id_for_label}}">Username</label>
-      {% if form.username.errors %}
-          {% for error in form.username.errors %}
-          <strong>{{ error|escape }}</strong>
-          {% endfor %}
-      {% endif %}
     </div>
     <div class="input-field col s6">
         <select id='id_tipo_usuario' required="" name="tipo_usuario">

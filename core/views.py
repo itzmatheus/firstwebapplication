@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from core.forms import UsuarioForm
+from core.forms import UsuarioForm, AlterarSenhaForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import logout, authenticate, login
@@ -112,5 +112,23 @@ def deslogar(request):
 #Alterar senha
 @login_required
 def alterar_senha(request, pk): #Não funciona, corrigir depois
-    pass
-    return render(request, 'formularios/usuario/alterar_senha.html')
+    usuario = User.objects.get(pk=pk)
+    form = AlterarSenhaForm(request.POST)
+    if request.method == 'POST':
+        old_password = request.POST['old_password']
+        new_password = request.POST['new_password']
+        confirm_password = request.POST['confirm_password']
+        if form.is_valid():
+            if usuario.check_password(old_password) is True:
+                if new_password == confirm_password:
+                    usuario.set_password(new_password)
+                    usuario.save()
+                    messages.success(request, 'Senha trocada com sucesso!')
+                    return redirect('index')
+                else:
+                    messages.error(request, 'As senhas estão diferentes')
+            else:
+                messages.error(request, 'Senha antiga incorreta!')
+        else:
+            form = AlterarSenhaForm()
+    return render(request, 'formularios/usuario/alterar_senha.html', {'form':form})
