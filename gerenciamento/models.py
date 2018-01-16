@@ -28,6 +28,17 @@ class Marca(models.Model):
 	marca_descricao = models.CharField(max_length=100, blank=True)
 	marca_email = models.CharField(max_length=50, blank=True)
 	marca_telefone = models.CharField(max_length=11)
+	marca_slug = models.SlugField('Atalho')
+
+	#Função para retornar url baseado no valor marca_slug
+    #editar
+	@models.permalink
+	def get_absolute_url_editar(self):
+		return ('editar_marca', (), {'marca_slug':self.marca_slug})
+    #remover
+	@models.permalink
+	def get_absolute_url_remover(self):
+		return ('remover_marca', (), {'marca_slug':self.marca_slug})
 
 	def __str__(self):
 		return self.marca_nome

@@ -4,7 +4,7 @@ remover_usuario, logar, deslogar, alterar_senha)
 
 urlpatterns = [
         url(r'^cadastrar_usuario/', cadastrar_usuario, name='cadastrar_usuario'),
-        url(r'^listar_usuarios', listar_usuarios, name='listar_usuarios'),
+        url(r'^$', listar_usuarios, name='listar_usuarios'),
         url(r'^editar_usuario/(?P<pk>[0-9]+)', editar_usuario, name='editar_usuario'),
         url(r'^remover_usuario/(?P<pk>[0-9]+)', remover_usuario, name='remover_usuario'),
         url(r'^deslogar/$', deslogar, name='deslogar'),

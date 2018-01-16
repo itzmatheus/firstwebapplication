@@ -24,15 +24,15 @@ body {
         <h5>Alteração de senha</h5>
           <div class="input-field">
               <input type="password" name="old_password" value="" maxlength="30" id='id_old_password'>
-              <label for="id_password">Senha antiga</label>
+              <label for="{{form.old_password.id_for_label}}">Senha antiga</label>
             </div>
           <div class="input-field">
               <input type="password" name="new_password" value="" maxlength="30" id='id_new_password'>
-              <label for="id_password">Nova senha</label>
+              <label for="{{form.new_paswword.id_for_label}}">Nova senha</label>
             </div>
             <div class="input-field">
                 <input type="password" name="confirm_password" value="" maxlength="30" id='id_confirm_password'>
-                <label for="id_password">Confirme nova senha</label>
+                <label for="{{form.confirm_password.id_for_label}}">Confirme nova senha</label>
               </div>
             <br>
             <div class='row'>

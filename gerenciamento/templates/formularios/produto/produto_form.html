@@ -7,39 +7,37 @@
 <div class="container">
 <form enctype="multipart/form-data" method="post">
   {% csrf_token %}
-  {% if form.errors %}
-      {% for field in form %}
-          {% for error in field.errors %}
-          <div id="modal2" class="modal">
-              <div class="modal-content center">
-                <h5>Atenção!</h5><br>
-                <div class="center">
-                  <span>{{ error|escape }}</span>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="modal-close btn-flat" name="button">Continuar</button>
-              </div>
-          </div>
-          {% endfor %}
-      {% endfor %}
-  {% endif %}
   <div class="center">
     <h6 style="margin-top:2%">Cadastrar Produto</h6>
     <span>Ficha de cadastro</span>
   </div>
   <div class="card-panel z-depth-4 row">
       <div class="input-field">
-          <input type="text" name="produto_nome" value="" maxlength="30" required="" id='id_produto_nome'>
+          <input type="text" name="produto_nome" value="" maxlength="30"  id='id_produto_nome'>
           <label for="{{form.produto_nome.id_for_label}}">Nome</label>
+          {% if form.produto_nome.errors %}
+              {% for error in form.produto_nome.errors %}
+              <strong>{{ error|escape }}</strong>
+              {% endfor %}
+          {% endif %}
         </div>
       <div class="input-field">
           <input type="text" name="produto_descricao" value="" maxlength="100" id="id_produto_descricao">
           <label for="{{form.produto_descricao.id_for_label}}">Descrição</label>
+          {% if form.produto_descricao.errors %}
+              {% for error in form.produto_descricao.errors %}
+              <strong>{{ error|escape }}</strong>
+              {% endfor %}
+          {% endif %}
         </div>
       <div class="input-field">
           <input type="text" name="produto_data_compra" class="datepicker" value="" id="id_produto_data_compra">
           <label for="{{form.produto_data_compra.id_for_label}}">Data de compra</label>
+          {% if form.produto_data_compra.errors %}
+              {% for error in form.produto_data_compra.errors %}
+              <strong>{{ error|escape }}</strong>
+              {% endfor %}
+          {% endif %}
       </div>
       <div class="input-field">
           <select name="produto_marca">
@@ -49,14 +47,29 @@
               {% endfor %}
           </select>
           <label for="{{form.produto_marca.id_for_label}}">Marca</label>
+          {% if form.produto_marca.errors %}
+              {% for error in form.produto_marca.errors %}
+                  <strong>{{ error|escape }}</strong>
+              {% endfor %}
+          {% endif %}
         </div>
       <div class="input-field">
-          <input type="text" name="produto_tipo" maxlength="20" value="" id="id_produto_tipo">
+          <input type="text" name="produto_tipo" maxlength="20" value=""  id="id_produto_tipo">
           <label for="{{form.produto_tipo.id_for_label}}">Tipo</label>
+          {% if form.produto_tipo.errors %}
+              {% for error in form.produto_tipo.errors %}
+              <strong>{{ error|escape }}</strong>
+              {% endfor %}
+          {% endif %}
       </div>
       <div class="input-field">
-          <input type="text" name="produto_cor" value="" maxlength="20" id="id_produto_cor">
+          <input type="text" name="produto_cor" value="" maxlength="20"  id="id_produto_cor">
           <label for="{{form.produto_cor.id_for_label}}">Cor</label>
+          {% if form.produto_cor.errors %}
+              {% for error in form.produto_cor.errors %}
+              <strong>{{ error|escape }}</strong>
+              {% endfor %}
+          {% endif %}
       </div>
       <div class="input-field">
           <select name="produto_tamanho" id="id_produto_tamanho">
@@ -68,14 +81,35 @@
               <option value="MG">Muito Grande</option>
           </select>
           <label for="{{form.produto_tamanho.id_for_label}}">Tamanho</label>
+          {% if form.produto_tamanho.errors %}
+              {% for error in form.produto_tamanho.errors %}
+              <strong>{{ error|escape }}</strong>
+              {% endfor %}
+          {% endif %}
         </div>
       <div class="input-field">
-          <input type="number" name="produto_valor_compra" value="" maxlength="10" id="id_produto_valor_compra">
+          <input type="number" name="produto_valor_compra" value=""  maxlength="10" id="id_produto_valor_compra">
           <label for="{{form.produto_valor_compra.id_for_label}}">Valor de compra</label>
+          {% if form.produto_valor_compra.errors %}
+              {% for error in form.produto_valor_compra.errors %}
+              <strong>{{ error|escape }}</strong>
+              {% endfor %}
+          {% endif %}
       </div>
-      <div class="input-field">
-        {{form.produto_foto}}
+      <div class="input-field file-field">
+        <div class="btn">
+                <span>Fotos</span>
+                <input type="file" name="produto_foto" id="id_produto_foto">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
         <label for="{{form.produto_foto.id_for_label}}"></label>
+        {% if form.produto_foto.errors %}
+            {% for error in form.produto_foto.errors %}
+            <strong>{{ error|escape }}</strong>
+            {% endfor %}
+        {% endif %}
       </div>
 
     </div>

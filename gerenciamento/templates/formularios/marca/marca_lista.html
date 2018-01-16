@@ -12,6 +12,7 @@
           <th>Descrição</th>
           <th>Email</th>
           <th>Telefone</th>
+          <th>Slug</th>
           <th>Ação</th>
         </tr>
       </thead>
@@ -22,11 +23,12 @@
         <td>{{ marca.marca_descricao }}</td>
         <td>{{ marca.marca_email }}</td>
         <td>{{ marca.marca_telefone }}</td>
+        <td>{{ marca.marca_slug }}</td>
         <td>
-          <a href="{% url 'editar_marca' pk=marca.pk %}">
+          <a href="{{ marca.get_absolute_url_editar  }}">
        <i class="material-icons">mode_edit</i>
           </a>
-          <a href="{% url 'remover_marca' pk=marca.pk %}">
+          <a href="{{ marca.get_absolute_url_remover }}">
         <i class="material-icons">delete</i>
          </a>
         </td>

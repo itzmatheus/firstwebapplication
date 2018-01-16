@@ -7,13 +7,30 @@
 <div class="container">
 <form method="post">
   {% csrf_token %}
+  {% if form.errors %}
+  {% for field in form %}
+    {% for error in field.errors %}
+  <div id="modal2" class="modal">
+      <div class="modal-content center">
+        <h5>ATENÇÃO!</h5><br>
+        <div class="center">
+              <span>Campos: {{ form.errors }}</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-close btn-flat" name="button">Continuar</button>
+      </div>
+    </div>
+    {% endfor %}
+  {% endfor %}
+  {% endif %}
   <div class="center">
     <h6 style="margin-top:2%">Cadastrar Marca</h6>
     <span>Ficha de cadastro</span>
   </div>
   <div class="card-panel z-depth-4 row">
       <div class="input-field" >
-          <input type="text" name="marca_nome" value="" maxlength="50" required="" id="id_marca_nome">
+          <input type="text" name="marca_nome" value="" maxlength="50" d="id_marca_nome">
           <label for="{{form.marca_nome.id_for_label}}">Nome<span id="valNome" style="color:red">*</span></label>
        </div>
       <div class="input-field">
@@ -28,7 +45,10 @@
           <input type="text" name="marca_telefone" value="" maxlength="11"  id="id_marca_telefone">
           <label for="{{form.marca_telefone.id_for_label}}" >Telefone</label>
        </div>
-
+      <div class="input-field">
+        <input type="text" name="marca_slug" maxlength='50' id='id_marca_slug' value="">
+        <label for="{{form.marca_slug.id_for_label}}">Atalho</label>
+      </div>
     </div>
   <div class="center">
   <button type="submit" class="btn waves-effect waves-light" name="action">Salvar</button>
