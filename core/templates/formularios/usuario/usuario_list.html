@@ -19,9 +19,9 @@
       <tbody>
     {% for usuario in lista %}
       <tr>
-       <td>{{ usuario.last_name }}</td>
+       <td>{{ usuario.name }}</td>
         <td>{{ usuario.email }}</td>
-        <td>{{ usuario.first_name }}</td>
+        <td>{{ usuario.telefone }}</td>
         <td>{{ usuario.username }}</td>
         {% if usuario.is_superuser %}
         <td>Gerente</td>

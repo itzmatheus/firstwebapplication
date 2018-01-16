@@ -41,8 +41,6 @@ INSTALLED_APPS = [
     'core',
 ]
 
-LOGIN_URL = '/usuario/login/'
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -132,7 +130,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
+LOGIN_URL = '/usuario/login/'
 MEDIA_URL = '/media/' #Pasta utilizada
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #Defini diretorio da pasta media
+AUTH_USER_MODEL = 'core.User'

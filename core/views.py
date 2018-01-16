@@ -2,11 +2,11 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from core.forms import UsuarioForm
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import logout, authenticate, login
 from Projeto.settings import LOGIN_URL
 from django.contrib import messages
+from .models import User
 
 ################################################################
 #                                                              #
@@ -23,14 +23,14 @@ def cadastrar_usuario(request):
             if form.is_valid():
                 username = request.POST['username']
                 email = request.POST['email']
-                password = request.POST['password']
+                name = request.POST['name']
+                password = request.POST['password1']
                 tipo_usuario = request.POST['tipo_usuario'] #Este campo não salva, apenas serve para saber o tipo de usuário
-                first_name = request.POST['first_name'] #Campo telefone está salvando na var first_name padrão do django
-                last_name = request.POST['last_name'] #Campo name completo está salvando na var last_name padrão do django
+                telefone = request.POST['telefone'] #Campo telefone está salvando na var first_name padrão do django
                 if tipo_usuario == 'super_user':
-                    user = User.objects.create_user(username=username,email=email,password=password,first_name=first_name,last_name=last_name,is_active=True, is_staff=True, is_superuser=True)
+                    user = user = User.objects.create_user(username=username,email=email,password=password,name=name,telefone=telefone,is_active=True, is_staff=True, is_superuser=True)
                 elif tipo_usuario == 'funcionario':
-                    user = User.objects.create_user(username=username,email=email,password=password,first_name=first_name,last_name=last_name,is_active=True, is_staff=True, is_superuser=False)
+                    user = user = User.objects.create_user(username=username,email=email,password=password,name=name,telefone=telefone,is_active=True, is_staff=False, is_superuser=False)
                 messages.success(request, 'Usuário {} cadastrado com sucesso!'.format(username))
                 return redirect('index')
         form = UsuarioForm()
