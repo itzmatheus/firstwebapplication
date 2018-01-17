@@ -9,6 +9,8 @@
     {% endblock %}
   </title>
 
+
+      {% load staticfiles %}
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
@@ -16,10 +18,18 @@
       <!-- <link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/> -->
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <!-- DataTables -->
+      <link rel="stylesheet" href="{% static 'css/jquery.dataTables.css' %}">
+      <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"> -->
+      <!-- Import JQuery before JS -->
+       <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
+       <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+       <!-- DataTable -->
+       <script src="{% static 'js/jquery.dataTables.js' %}"></script>
+       <!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
 
 
 <style>
-
 /*Adequação da página a sidebar-nav e footer */
   main, footer {
     padding-left: 300px;
@@ -29,69 +39,54 @@
       padding-left: 0;
     }
   }
-
   h6{
       font-weight: bold;
   }
-
 /* dropdown navbar */
   .dropdown-content{
       margin: 50px 0px !important;
   }
-
   /* dropdown font color */
   .dropdown-content li > a, .dropdown-content li > span {
       color: #000;
   }
-
   .navicons{
       margin-top: 2px;
   }
-
   .navbararrow{
       margin-top: 4px;
   }
-
   /* Footer */
-
   body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
     background-color: #e0f7fa;
   }
-
   main {
     flex: 1 0 auto;
   }
-
-
   /* Ajuste de tamanho da navbar */
   nav {
       height: 50px;
       line-height: 50px;
   }
-
   nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
       height: 50px;
       line-height: 50px;
   }
-
   nav .button-collapse i {
       height: 50px;
       line-height: 50px;
   }
-
   nav .brand-logo {
       font-size: 1.8rem;
   }
-
   nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
     height: 50px;
     line-height: 50px;
   }
   /* Sidebar Styles */
-
 #logo {
   width: 150px;
   display: block;
@@ -115,7 +110,6 @@
     margin-right: 50px;
     display: block;
 }
-
 #logo-name-sidebar{
   font-size: 20px;
   margin-top: -2px;
@@ -230,8 +224,6 @@
   {% endblock %}
 </main>
 
-      <!-- Import JQuery before JS -->
-       <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
        <!-- Materialize JS -->
        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
        <!-- <script type="text/javascript" src="static/js/materialize.min.js"></script> -->
@@ -253,6 +245,6 @@
            {% endfor %}
        {% endif %}
        </script>
-  
+
 </body>
 </html>
