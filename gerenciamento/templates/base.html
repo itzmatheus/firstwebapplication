@@ -21,12 +21,25 @@
       <!-- DataTables -->
       <link rel="stylesheet" href="{% static 'css/jquery.dataTables.css' %}">
       <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"> -->
+      <!-- DataTable Buttons CSS -->
+      <link rel="stylesheet" href="{% static 'css/buttons.dataTables.css' %}">
+      <!-- <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css"> -->
       <!-- Import JQuery before JS -->
        <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
-       <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+       <script type="text/javascript" src="{% static 'js\jquery-3.2.1.min.js' %}"></script>
        <!-- DataTable -->
-       <script src="{% static 'js/jquery.dataTables.js' %}"></script>
+       <script src="{% static 'js\datatable\jquery.dataTables.js' %}"></script>
        <!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
+       <!-- Buttons -->
+       <script type="text/javascript" src="{% static 'js\datatable\dataTables.buttons.js' %}"></script>
+       <script type="text/javascript" src="{% static 'js\datatable\buttons.flash.js' %}"></script>
+       <script type="text/javascript" src="{% static 'js\datatable\buttons.print.js' %}"></script>
+       <script type="text/javascript" src="{% static 'js\datatable\pdfmake.min.js' %}"></script>
+       <script type="text/javascript" src="{% static 'js\datatable\buttons.html5.js' %}"></script>
+       <script type="text/javascript" src="{% static 'js\datatable\vfs_fonts.js' %}"></script>
+       <script type="text/javascript" src="{% static 'js\datatable\jszip.js' %}"></script>
+       <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script> -->
+       <script type="text/javascript" src="{% static 'js\datatable\buttons.colVis.js' %}"></script>
 
 
 <style>
@@ -166,7 +179,7 @@
     <li>
       <div id='logo'>
         <a href="{% url 'index' %}" id='logosidebar' class='circle center'>
-          <img src="{% static 'img\logo.svg' %}" class="circle center">
+          <img src="{% static 'images\logo\logo.svg' %}" class="circle center">
           <h5 id="logo-name-sidebar">Gerenciamento</h5>
         </a>
       </div>

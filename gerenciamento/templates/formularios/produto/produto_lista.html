@@ -14,6 +14,8 @@
             <th>Nome</th>
             <th>Data de compra</th>
             <th>Marca</th>
+            <th>Tipo</th>
+            <th>Cor</th>
             <th>Tamanho</th>
             <th>Valor pago</th>
           </tr>
@@ -24,6 +26,8 @@
             <td><a style="font-size:15px;" class="black-text">{{produto.produto_nome}}</a></td>
             <td><a style="font-size:15px;" class="black-text">{{ produto.produto_data_compra }}</a></td>
             <td><a style="font-size:15px;" class="black-text">{{ produto.produto_marca }}</a></td>
+            <td><a style="font-size:15px;" class="black-text">{{ produto.produto_tipo}}</a></td>
+            <td><a style="font-size:15px;" class="black-text">{{ produto.produto_cor }}</a></td>
             <td><a style="font-size:15px;" class="black-text">{{ produto.produto_tamanho }}</a></td>
             <td><a style="font-size:15px;" class="black-text">{{ produto.produto_valor_compra }}</a></td>
           </tr>
@@ -35,8 +39,12 @@
 <script>
 // Função para inicializar a tabela js
 $(document).ready( function () {
-  
+
   $('#datatables').DataTable( {
+    // Aparecer Scroll quando expandir linhas por página
+    "scrollY":        "800px",
+     "scrollCollapse": true,
+     "paging":         true,
     // Tradução para pt-br
     "language": {
             "sEmptyTable": "Nenhum registro encontrado",
@@ -69,10 +77,23 @@ $(document).ready( function () {
                 "sSortDescending": ": Ordenar colunas de forma descendente"
             }
       },
-      // Aparecer Scroll quando expandir linhas por página
-      "scrollY":        "800px",
-       "scrollCollapse": true,
-       "paging":         true,
+
+       // buttons
+       dom: 'Bfrtip',
+       buttons: [
+          'copyHtml5',
+          'excelHtml5',
+          'csvHtml5',
+          {
+              extend: 'pdfHtml5',
+              download: 'open'
+          },
+          {
+              extend: 'print',
+              text: '<span style="color:#4d4d4d;">Imprimir<span>',
+
+          },
+       ],
 
   } );
 } );
