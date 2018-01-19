@@ -3,12 +3,25 @@
 {% block title %}Lista de Produtos{% endblock %}
 {% block content %}
 
+<style media="screen">
+div.dt-buttons {
+  position: "relative",
+          float: "right"
+}
+
+
+/* Centralizar buttons */
+/* .dataTables_wrapper .dt-buttons {
+  float:none;
+  text-align:center;
+} */
+</style>
     <div class="card material-table">
       <div class="table-header">
         <h4 class='center-align'>Lista de Produtos</h4>
       </div>
 
-      <table id="datatables" class="display striped bordered">
+      <table id="datatables" class="display compact cell-border striped bordered">
         <thead>
           <tr>
             <th>Nome</th>
@@ -40,7 +53,8 @@
 // Função para inicializar a tabela js
 $(document).ready( function () {
 
-  $('#datatables').DataTable( {
+ $('#datatables').DataTable( {
+    responsive : true,
     // Aparecer Scroll quando expandir linhas por página
     "scrollY":        "800px",
      "scrollCollapse": true,
@@ -78,25 +92,44 @@ $(document).ready( function () {
             }
       },
 
-       // buttons
-       dom: 'Bfrtip',
+       // // buttons
+       dom : 'lrfBtip',
+       // dom: 'Blfrtip',
+       // dom: 'lfBrtip',
+       // dom : 'lfrtipB',
+
        buttons: [
-          'copyHtml5',
-          'excelHtml5',
-          'csvHtml5',
-          {
-              extend: 'pdfHtml5',
-              download: 'open'
-          },
-          {
+         {
               extend: 'print',
               text: '<span style="color:#4d4d4d;">Imprimir<span>',
-
+              tittleAttr: 'Imprimir'
+         },
+         {
+              extend:    'copyHtml5',
+              text:      '<i class="fa fa-files-o"></i>',
+              titleAttr: 'Copy'
           },
+          {
+              extend:    'excelHtml5',
+              text:      '<i class="fa fa-file-excel-o"></i>',
+              titleAttr: 'Excel'
+          },
+          {
+              extend:    'csvHtml5',
+              text:      '<i class="fa fa-file-text-o"></i>',
+              titleAttr: 'CSV'
+          },
+          {
+              extend:    'pdfHtml5',
+              text:      '<i class="fa fa-file-pdf-o"></i>',
+              titleAttr: 'PDF',
+              download: 'open'
+          }
        ],
 
   } );
 } );
+
 // Função para clicar na tabela e redirecionar para página de edição
 $(".clickable-row").click(function() {
   window.location = $(this).data("href");

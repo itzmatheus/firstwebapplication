@@ -192,4 +192,14 @@ def remover_produto(request, pk):
 # Index
 @login_required
 def index(request):
-    return render(request, 'diversos/index.html')
+    marca = Marca.objects.all()
+    lista_todos = []
+    lista_data = []
+    for x in Marca.objects.all(): #Percorrer primeiramente todos as marcas cadastradas;
+        for j in Produto.objects.all(): #Percorrer depois a partir de 1 marca todos os produtos cadastrados.
+            if x == j.produto_marca: #Comparar 1 marca com todos os produtos cadastrados!
+                lista_todos.append(x) # Se a comparação entre Merca e produto_marca ser iguais adiciona numa lista a marca.
+        lista_data.append(lista_todos.count(x)) # Para cada marca percorrida ele vai adicionar
+                                                # uma lista com todas as vezes que tiver repetido x na lista_todos.
+
+    return render(request, 'diversos/index.html', {'marcas':marca,'produtos':lista_data})
