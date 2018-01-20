@@ -10,7 +10,7 @@
             Gerenciamento da Loja.
             </p> -->
 
-            <canvas id="myChart" width="180" height="120"></canvas>
+            <canvas id="myChart" style="position: relative;" width="180" height="120"></canvas>
 
 
     </div>
@@ -19,7 +19,7 @@
 <script type="text/javascript">
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
-    type: 'polarArea',
+    type: 'pie',
     data: {
 
         labels: [{% for marca in marcas %} '{{marca}}', {% endfor %}],
