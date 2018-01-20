@@ -2,51 +2,183 @@
 {% load staticfiles %}
 {% block title %}Lista de Produtos{% endblock %}
 {% block content %}
-    <div class="center">
-      <h4>Lista de Produtos</h4>
-    </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Foto</th>
-          <th>Nome</th>
-          <th>Descrição</th>
-          <th>Data de compra</th>
-          <th>Marca</th>
-          <th>Tipo</th>
-          <th>Cor</th>
-          <th>Tamanho</th>
-          <th>Valor pago</th>
-          <th>Ação</th>
-        </tr>
-      </thead>
-      <tbody>
-    {% for produto in lista %}
-      <tr>
-        {% if produto.produto_foto %}
-        <td><img src="{{produto.produto_foto.url}}" style="width:60px"></td>
-        {% else %}
-        <td><img src="{% static 'img\Produto-Sem-Imagem.jpg' %}" style="width:60px"></td>
-        {% endif %}
-       <td>{{ produto.produto_nome }}</td>
-        <td>{{ produto.produto_descricao }}</td>
-        <td>{{ produto.produto_data_compra }}</td>
-        <td>{{ produto.produto_marca }}</td>
-        <td>{{ produto.produto_tipo}}</td>
-        <td>{{ produto.produto_cor }}</td>
-        <td>{{ produto.produto_tamanho }}</td>
-        <td>R$ {{ produto.produto_valor_compra }}</td>
-        <td>
-          <a href="{% url 'editar_produto' pk=produto.pk %}">
-       <i class="material-icons">mode_edit</i>
-          </a>
-          <a href="{% url 'remover_produto' pk=produto.pk %}">
-        <i class="material-icons">delete</i>
-         </a>
-        </td>
-      </tr>
-      {% endfor %}
-      </tbody>
-    </table>
 
+<style media="screen">
+div.dt-buttons {
+  position: "relative",
+          float: "right"
+}
+
+
+/* Centralizar buttons */
+/* .dataTables_wrapper .dt-buttons {
+  float:none;
+  text-align:center;
+} */
+</style>
+    <div class="card material-table">
+      <div class="table-header">
+        <h4 class='center-align'>Lista de Produtos</h4>
+      </div>
+
+      <table id="datatables" class="display compact cell-border striped bordered">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Data de compra</th>
+            <th>Marca</th>
+            <th>Tipo</th>
+            <th>Cor</th>
+            <th>Tamanho</th>
+            <th>Valor pago</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for produto in lista %}
+          <tr class='clickable-row' data-href="{% url 'editar_produto' pk=produto.pk %}">
+            <td><a style="font-size:15px;" class="black-text">{{produto.produto_nome}}</a></td>
+            <td><a style="font-size:15px;" class="black-text">{{ produto.produto_data_compra }}</a></td>
+            <td><a style="font-size:15px;" class="black-text">{{ produto.produto_marca }}</a></td>
+            <td><a style="font-size:15px;" class="black-text">{{ produto.produto_tipo}}</a></td>
+            <td><a style="font-size:15px;" class="black-text">{{ produto.produto_cor }}</a></td>
+            <td><a style="font-size:15px;" class="black-text">{{ produto.produto_tamanho }}</a></td>
+            <td><a style="font-size:15px;" class="black-text">{{ produto.produto_valor_compra }}</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+<script>
+// Função para inicializar a tabela js
+$(document).ready( function () {
+
+ $('#datatables').DataTable( {
+    responsive : true,
+    // Aparecer Scroll quando expandir linhas por página
+    "scrollY":        "800px",
+     "scrollCollapse": true,
+     "paging":         true,
+    // Tradução para pt-br
+    "language": {
+            "sEmptyTable": "Nenhum registro encontrado",
+            "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+            "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sInfoThousands": ".",
+            "lengthMenu": '<span class="black-text">Linhas por página:</span><select >' +
+              '<option value="10">10</option>' +
+              '<option value="20">20</option>' +
+              '<option value="30">30</option>' +
+              '<option value="40">40</option>' +
+              '<option value="50">50</option>' +
+              '<option value="-1">Tudo</option>' +
+              '</select>',
+            "sLoadingRecords": "Carregando...",
+            "sProcessing": "Processando...",
+            "sZeroRecords": "Nenhum registro encontrado",
+            "sSearch": "",
+            "sSearchPlaceholder": "Procurar",
+            "oPaginate": {
+                "sNext": "Próximo",
+                "sPrevious": "Anterior",
+                "sFirst": "Primeiro",
+                "sLast": "Último"
+            },
+            "oAria": {
+                "sSortAscending": ": Ordenar colunas de forma ascendente",
+                "sSortDescending": ": Ordenar colunas de forma descendente"
+            }
+      },
+
+       // // buttons
+       dom : 'lrfBtip',
+       // dom: 'Blfrtip',
+       // dom: 'lfBrtip',
+       // dom : 'lfrtipB',
+
+       buttons: [
+         {
+              extend: 'print',
+              text: '<span style="color:#4d4d4d;">Imprimir<span>',
+              tittleAttr: 'Imprimir'
+         },
+         {
+              extend:    'copyHtml5',
+              text:      '<i class="fa fa-files-o"></i>',
+              titleAttr: 'Copy'
+          },
+          {
+              extend:    'excelHtml5',
+              text:      '<i class="fa fa-file-excel-o"></i>',
+              titleAttr: 'Excel'
+          },
+          {
+              extend:    'csvHtml5',
+              text:      '<i class="fa fa-file-text-o"></i>',
+              titleAttr: 'CSV'
+          },
+          {
+              extend:    'pdfHtml5',
+              text:      '<i class="fa fa-file-pdf-o"></i>',
+              titleAttr: 'PDF',
+              download: 'open'
+          }
+       ],
+
+  } );
+} );
+
+// Função para clicar na tabela e redirecionar para página de edição
+$(".clickable-row").click(function() {
+  window.location = $(this).data("href");
+});
+</script>
+
+
+
+<!-- <table id="datatables" class="table">
+  <thead>
+    <tr>
+      <th>Foto</th>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Data de compra</th>
+      <th>Marca</th>
+      <th>Tipo</th>
+      <th>Cor</th>
+      <th>Tamanho</th>
+      <th>Valor pago</th>
+      <th>Ação</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for produto in lista %}
+  <tr>
+    {% if produto.produto_foto %}
+    <td><img src="{{produto.produto_foto.url}}" style="width:60px"></td>
+    {% else %}
+    <td><img src="{% static 'img\Produto-Sem-Imagem.jpg' %}" style="width:60px"></td>
+    {% endif %}
+   <td>{{ produto.produto_nome }}</td>
+    <td>{{ produto.produto_descricao }}</td>
+    <td>{{ produto.produto_data_compra }}</td>
+    <td>{{ produto.produto_marca }}</td>
+    <td>{{ produto.produto_tipo}}</td>
+    <td>{{ produto.produto_cor }}</td>
+    <td>{{ produto.produto_tamanho }}</td>
+    <td>R$ {{ produto.produto_valor_compra }}</td>
+    <td>
+      <a href="{% url 'editar_produto' pk=produto.pk %}">
+   <i class="material-icons">mode_edit</i>
+      </a>
+      <a href="{% url 'remover_produto' pk=produto.pk %}">
+    <i class="material-icons">delete</i>
+     </a>
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table> -->
 {% endblock %}

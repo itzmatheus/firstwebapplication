@@ -26,7 +26,7 @@ def cadastrar_usuario(request):
                 name = request.POST['name']
                 password = request.POST['password1']
                 tipo_usuario = request.POST['tipo_usuario'] #Este campo não salva, apenas serve para saber o tipo de usuário
-                telefone = request.POST['telefone'] #Campo telefone está salvando na var first_name padrão do django
+                telefone = request.POST['telefone']
                 if tipo_usuario == 'super_user':
                     user = user = User.objects.create_user(username=username,email=email,password=password,name=name,telefone=telefone,is_active=True, is_staff=True, is_superuser=True)
                 elif tipo_usuario == 'funcionario':
@@ -111,24 +111,24 @@ def deslogar(request):
 
 #Alterar senha
 @login_required
-def alterar_senha(request, pk): #Não funciona, corrigir depois
-    usuario = User.objects.get(pk=pk)
-    form = AlterarSenhaForm(request.POST)
+def alterar_senha(request, pk):
     if request.method == 'POST':
+        form = AlterarSenhaForm(request.POST)
         old_password = request.POST['old_password']
         new_password = request.POST['new_password']
         confirm_password = request.POST['confirm_password']
         if form.is_valid():
-            if usuario.check_password(old_password) is True:
-                if new_password == confirm_password:
-                    usuario.set_password(new_password)
-                    usuario.save()
+            usuario = User.objects.get(pk=pk)
+            if usuario.check_password(old_password) is True: #1 Condição: testar se o password antigo é verídico.
+                if new_password == confirm_password: #2 Condição: caso Retorne True seguimos para comparar se os passwords novos estão iguais.
+                    usuario.set_password(new_password) #3 Caso estejam, usamos a função set_password para setar a nova senha.
+                    usuario.save() #4 Salvamos o usuario com a nova senha.
                     messages.success(request, 'Senha trocada com sucesso!')
                     return redirect('index')
                 else:
                     messages.error(request, 'As senhas estão diferentes')
             else:
                 messages.error(request, 'Senha antiga incorreta!')
-        else:
-            form = AlterarSenhaForm()
+    else:
+        form = AlterarSenhaForm()
     return render(request, 'formularios/usuario/alterar_senha.html', {'form':form})

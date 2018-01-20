@@ -9,17 +9,44 @@
     {% endblock %}
   </title>
 
+
+      {% load staticfiles %}
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-      <!-- <link type="text/css" rel="stylesheet" href="static/css/materialize.css"  media="screen,projection"/> -->
+      <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> -->
+      <link type="text/css" rel="stylesheet" href="{% static 'css\materialize.css' %}"  media="screen,projection"/>
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <!-- DataTables -->
+      <link rel="stylesheet" href="{% static 'css/jquery.dataTables.css' %}">
+      <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"> -->
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!-- DataTable Buttons CSS -->
+      <link rel="stylesheet" href="{% static 'css/buttons.dataTables.css' %}">
+      <!-- <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css"> -->
+      <!-- Import JQuery before JS -->
+       <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
+       <script type="text/javascript" src="{% static 'js\jquery-3.2.1.min.js' %}"></script>
+       <!-- DataTable -->
+       <script src="{% static 'js\datatable\jquery.dataTables.js' %}"></script>
+       <!-- <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
+       <!-- Buttons -->
+       <script type="text/javascript" src="{% static 'js\datatable\dataTables.buttons.js' %}"></script>
+       <script type="text/javascript" src="{% static 'js\datatable\buttons.flash.js' %}"></script>
+       <script type="text/javascript" src="{% static 'js\datatable\buttons.print.js' %}"></script>
+       <script type="text/javascript" src="{% static 'js\datatable\pdfmake.min.js' %}"></script>
+       <script type="text/javascript" src="{% static 'js\datatable\buttons.html5.js' %}"></script>
+       <script type="text/javascript" src="{% static 'js\datatable\vfs_fonts.js' %}"></script>
+       <script type="text/javascript" src="{% static 'js\datatable\jszip.js' %}"></script>
+       <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script> -->
+       <script type="text/javascript" src="{% static 'js\datatable\buttons.colVis.js' %}"></script>
+       <!-- ChartJS -->
+       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 
 
 <style>
-
 /*Adequação da página a sidebar-nav e footer */
   main, footer {
     padding-left: 300px;
@@ -29,69 +56,54 @@
       padding-left: 0;
     }
   }
-
   h6{
       font-weight: bold;
   }
-
 /* dropdown navbar */
   .dropdown-content{
       margin: 50px 0px !important;
   }
-
   /* dropdown font color */
   .dropdown-content li > a, .dropdown-content li > span {
       color: #000;
   }
-
   .navicons{
       margin-top: 2px;
   }
-
   .navbararrow{
       margin-top: 4px;
   }
-
   /* Footer */
-
   body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
     background-color: #e0f7fa;
   }
-
   main {
     flex: 1 0 auto;
   }
-
-
   /* Ajuste de tamanho da navbar */
   nav {
       height: 50px;
       line-height: 50px;
   }
-
   nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
       height: 50px;
       line-height: 50px;
   }
-
   nav .button-collapse i {
       height: 50px;
       line-height: 50px;
   }
-
   nav .brand-logo {
       font-size: 1.8rem;
   }
-
   nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
     height: 50px;
     line-height: 50px;
   }
   /* Sidebar Styles */
-
 #logo {
   width: 150px;
   display: block;
@@ -115,7 +127,6 @@
     margin-right: 50px;
     display: block;
 }
-
 #logo-name-sidebar{
   font-size: 20px;
   margin-top: -2px;
@@ -172,7 +183,7 @@
     <li>
       <div id='logo'>
         <a href="{% url 'index' %}" id='logosidebar' class='circle center'>
-          <img src="{% static 'img\logo.svg' %}" class="circle center">
+          <img src="{% static 'images\logo\logo.svg' %}" class="circle center">
           <h5 id="logo-name-sidebar">Gerenciamento</h5>
         </a>
       </div>
@@ -230,11 +241,9 @@
   {% endblock %}
 </main>
 
-      <!-- Import JQuery before JS -->
-       <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
        <!-- Materialize JS -->
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-       <!-- <script type="text/javascript" src="static/js/materialize.min.js"></script> -->
+       <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> -->
+       <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
        <script src="{% static 'js/aplicativo.js' %}"></script>
 
        <!-- Script para retornar erros nas páginas em forma de toast -->
@@ -253,6 +262,6 @@
            {% endfor %}
        {% endif %}
        </script>
-  
+
 </body>
 </html>
