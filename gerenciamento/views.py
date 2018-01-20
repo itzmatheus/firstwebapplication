@@ -194,6 +194,7 @@ def index(request):
     marca = Marca.objects.all()
     lista_todos = []
     lista_data = []
+    # Código para saber a quantidade de produtos cadastrados nas respectivas marcas
     for x in Marca.objects.all(): #Percorrer primeiramente todos as marcas cadastradas;
         for j in Produto.objects.all(): #Percorrer depois a partir de 1 marca todos os produtos cadastrados.
             if x == j.produto_marca: #Comparar 1 marca com todos os produtos cadastrados!
