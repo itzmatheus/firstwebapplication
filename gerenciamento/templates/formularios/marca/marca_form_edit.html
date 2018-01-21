@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% block title %}Editar Marca{% endblock %}
 {% block content %}
+
 <div class="container">
 <form method="post">
   {% csrf_token %}
@@ -32,9 +33,25 @@
       </div>
   <div class="center">
   <button type="submit" class="btn waves-effect waves-light" name="action">Salvar</button>
+  <a href="#modal1" class="btn waves-effect waves-light modal-trigger">Remover marca</a>
   </div>
  </form>
 </div>
 
-
+<!-- Modal Structure -->
+<div id="modal1" class="modal deep-purple">
+  <div class="modal-content center white-text">
+    <h4 class="card-title white-text darken-1"><i class="material-icons">announcement</i>  Mensagem do sistema!</h4>
+    <p style="font-size:16px;">Tem certeza que deseja remover <strong>'{{marca.marca_nome}}'</strong> ?
+      <br>Esta ação resultará na remoção definitiva do sistema.</p>
+  </div>
+  <div class="modal-footer deep-purple darken-2">
+    <div class="center">
+      <form method="post" action="{{ marca.get_absolute_url_remover }}">{% csrf_token %}
+        <button type="submit" class="btn-flat waves-effect modal-close light-blue white-text"><i class="material-icons left">check</i> Ok</button>
+        <a class="btn-flat waves-effect modal-close red accent-2 white-text"><i class="material-icons left">cancel</i> Cancelar</a>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}

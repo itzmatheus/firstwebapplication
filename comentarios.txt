@@ -7,3 +7,8 @@ forms.py >
 pessoa_sexo = forms.ModelChoiceField(widget=forms.Select(),
                                   queryset=Cliente.objects.all())
 Faz um select de uma tabela em forma de Select.
+
+Erros encontrados:
+Quando possui 2 Marcas cadastradas com mesmo slug, quando tentar acessar uma dessas
+marcas retorna um erro com uma var retornando 2 objetos.
+SOLUÇÃO: unique = True

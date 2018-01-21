@@ -100,7 +100,7 @@ def editar_marca(request, marca_slug):
     else:
         form = MarcaForm(instance=marca)
     return render(request, 'formularios/marca/marca_form_edit.html',
-        {'form': form})
+        {'form': form,'marca':marca})
 # @login_required
 # def editar_marca(request, pk):
 #     marca = get_object_or_404(Marca, pk=pk)
@@ -117,12 +117,14 @@ def editar_marca(request, marca_slug):
 # Excluir
 @login_required
 def remover_marca(request, marca_slug):
+    var = None #Como a func recebe parâmetros por ordem, mandei renderizar uma
+               # variável vazia.
     marca = Marca.objects.get(marca_slug=marca_slug)
     if request.method == 'POST':
         marca.delete()
         messages.success(request, 'Marca {} removida com sucesso!'.format(marca.marca_nome))
         return redirect('listar_marcas')
-    return render(request, 'formularios/marca/marca_delete.html',
+    return render(request, var,
         {'marca':marca})
 # def remover_marca(request, pk):
 #     marca = Marca.objects.get(pk=pk)
