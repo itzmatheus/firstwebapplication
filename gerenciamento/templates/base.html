@@ -104,10 +104,14 @@
     line-height: 50px;
   }
   /* Sidebar Styles */
+  /* Tamanho do user_view */
+.side-nav .user-view, .side-nav .userView {
+  padding-top: 8px;
+}
 #logo {
   width: 150px;
   display: block;
-  margin: auto;
+  margin-left: -8px;
 }
 .side-nav {
   width: 300px;
@@ -127,12 +131,6 @@
     margin-right: 50px;
     display: block;
 }
-#logo-name-sidebar{
-  font-size: 20px;
-  margin-top: -2px;
-  margin-bottom: 40px;
-  color: #aaaaaa;
-}
 </style>
 
 </head>
@@ -150,8 +148,8 @@
           </li>
         </ul>
         <ul>
-          <li class="dropdown-button right hide-on-med-and-down" data-activates='dropdown2'>
-            <a href="javascript:void(0)">
+          <li class="dropdown-button right" data-activates='dropdown2'>
+            <a>
               <i class="material-icons left navicons">more_vert</i>
             </a>
             <!-- Dropdown Structure -->
@@ -179,14 +177,21 @@
 
   <!-- Sidenav Structure -->
   <ul id='slide-out' class='side-nav fixed blue-grey darken-4 z-depth-4'>
-
     <li>
-      <div id='logo'>
+      <div class="user-view">
+       <div id='logo'>
         <a href="{% url 'index' %}" id='logosidebar' class='circle center'>
           <img src="{% static 'images\logo\logo.svg' %}" class="circle center">
-          <h5 id="logo-name-sidebar">Gerenciamento</h5>
         </a>
       </div>
+      <h5 class="name right-align" style="font-size:23px; margin-top: -30px; color: #e0e0e0 ;text-shadow: 1px 1px #000000;">Gerenciamento</h5>
+       <a><span class="name right-align" style="font-size:16px; color: #aaaaaa ;"><b>{{request.user.name}}</b></span></a>
+       <a><span class="email right-align" style="font-size:14px;margin-right: 3px; color: #aaaaaa ;"><b>{% if user.is_superuser %}
+      Gerente
+       {% else %}
+       Funcionário
+       {% endif %}</b></span></a>
+     </div>
     </li>
     <li class="no-padding">
       <ul class="collapsible collapsible-accordion">
@@ -197,7 +202,7 @@
               <li> <a href="{% url 'cadastrar_produto' %}">Cadastrar produto</a> </li>
               <li> <a href="{% url 'listar_produtos' %}">Listar produtos cadastrados</a> </li>
               <li> <a href="{% url 'cadastrar_marca' %}">Cadastrar marca</a> </li>
-              <li> <a href="{% url 'listar_marcas' %}">Listar produtos cadastrados</a> </li>
+              <li> <a href="{% url 'listar_marcas' %}">Listar marcas cadastrados</a> </li>
             </ul>
           </div>
         </li>

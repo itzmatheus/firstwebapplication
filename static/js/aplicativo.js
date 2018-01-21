@@ -5,7 +5,7 @@ $(document).ready(function() {
     $('.modal').modal();
     // Modal Error Nos Formulários
     $('#modal2').modal('open');
-    $('#modal3').modal();
+    $('#modal3').modal('open');
 });
 
 // Personalização de modal

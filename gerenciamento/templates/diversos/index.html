@@ -26,9 +26,7 @@ var myChart = new Chart(ctx, {
         datasets: [{
             label: 'Marcas',
             data: [
-              {% for produto in produtos %}
-              '{{ produto }}',
-              {% endfor %}
+              {% for produto in produtos %}'{{ produto }}', {% endfor %}
             ],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -52,7 +50,7 @@ var myChart = new Chart(ctx, {
     options: {
         title: {
             display: true,
-            text: 'Gráfico de Marcas X Produtos'
+            text: 'Gráfico de produtos cadastrados em cada marca'
         },
         responsive : true,
 
