@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from core.forms import UsuarioForm, AlterarSenhaForm
+from core.forms import UsuarioForm, AlterarSenhaForm, UsuarioEditForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import logout, authenticate, login
@@ -57,15 +57,15 @@ def editar_usuario(request, pk):
     if user.is_superuser:
         usuario = get_object_or_404(User, pk=pk)
         if request.method == 'POST':
-            form = UsuarioForm(request.POST, instance=usuario)
+            form = UsuarioEditForm(request.POST, instance=usuario)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect('listar_usuarios')
+                return redirect('listar_usuarios')
             # else:
             #     return render(request, 'formularios/usuario/usuario_edit.html',
             #         {'form':form})
         else:
-            form = UsuarioForm(instance=usuario)
+            form = UsuarioEditForm(instance=usuario)
     else:
         messages.error(request, 'Usuário {} não possui permissão para acessar essa página!'.format(user.username))
         return redirect('index')
