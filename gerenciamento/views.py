@@ -173,7 +173,7 @@ def editar_produto(request, pk):
     else:
         form = ProdutoForm(instance=produto)
     return render(request, 'formularios/produto/produto_form_edit.html',
-        {'form':form})
+        {'form':form, 'produto':produto})
 # Excluir
 @login_required
 def remover_produto(request, pk):

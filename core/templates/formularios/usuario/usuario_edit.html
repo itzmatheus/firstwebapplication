@@ -5,6 +5,24 @@
 <div class="container">
 <form method="post">
   {% csrf_token %}
+    {% if form.errors %}
+      {% for field in form %}
+        {% for error in field.errors %}
+    <!-- Modal Structure -->
+    <div id="modal2" class="modal deep-purple">
+      <div class="modal-content center white-text">
+        <h4 class="card-title white-text darken-1"><i class="material-icons">announcement</i>  Mensagem do sistema!</h4>
+        <p style="font-size:16px;">{{ form.errors }}</p>
+      </div>
+      <div class="modal-footer deep-purple darken-2">
+        <div class="center">
+            <button type="button" class="btn-flat waves-effect modal-close light-blue white-text"><i class="material-icons left">check</i> Ok</button>
+        </div>
+      </div>
+    </div>
+        {% endfor %}
+      {% endfor %}
+    {% endif %}
   <div class="center">
     <h6 style="margin-top:2%">Editar Usuário</h6>
     <span>Campos</span>
@@ -12,23 +30,27 @@
   <div class="card-panel z-depth-4 row">
     <!-- {{ form.as_p }} -->
     <div class="input-field" >
-       {{form.last_name}}
-       <label for="{{form.last_name.id_for_label}}">Nome</label>
+       {{form.name}}
+       <label for="{{form.name.id_for_label}}">Nome</label>
     </div>
     <div class="input-field">
       {{form.email}}
       <label for="{{form.email.id_for_label}}">Email</label>
     </div>
     <div class="input-field">
-      {{form.first_name}}
-      <label for="{{form.first_name.id_for_label}}">Telefone</label>
+      {{form.telefone}}
+      <label for="{{form.telefone.id_for_label}}">Telefone</label>
     </div>
     <div class="input-field">
       {{form.username}}
-      <label for="{{form.username.id_for_label}}">Username</label>
+      <label for="{{form.username.id_for_label}}">Usuário</label>
+    </div>
+    <div class="input-field">
+        {{form.tipo_usuario}}
+      <label for="{{form.tipo_usuario.id_for_label}}">Tipo de Usuário</label>
     </div>
   <div class="center">
-  <button type="submit" class="btn waves-effect waves-light" disabled name="action">Salvar</button>
+  <button type="submit" class="btn waves-effect waves-light" name="action">Salvar</button>
   </div>
  </form>
 </div>

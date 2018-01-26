@@ -1,0 +1,150 @@
+[33mcommit 1cfe6f9e1d50baadfb4c123e4325b87810c6fadb[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m)[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Sun Jan 21 17:12:26 2018 -0200
+
+    Testando metodo de import js e css atraves de template tags
+
+[33mcommit 102e97c9526e87b89e5a95a23d981f06d655cb48[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Sun Jan 21 01:58:02 2018 -0200
+
+    Adicionando opcao de remover marca atraves de modals. Mudancas na views de remover marca, template de editar marca, na base e nas configuracoes do javascript materialize no aplicativo
+
+[33mcommit a982d6fa7d3b81f30f8cfc303dd92eda51c86252[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Sat Jan 20 20:23:49 2018 -0200
+
+    Modificando Sidenav e navbar
+
+[33mcommit 95c635c836aad6ecc44caf6df88e28e7d0435ba2[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Fri Jan 19 23:08:42 2018 -0200
+
+    removendo print que havia deixado no código, deixando responsivo o grafico e alterando layout do grafico para pie
+
+[33mcommit ef6817f1296d0e379ff126ce3404dd9ba7fc2699[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Fri Jan 19 21:31:09 2018 -0200
+
+    Gerando grafico para testes
+
+[33mcommit e64cfcf530297822cdd8d47961c069700ac631bf[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Thu Jan 18 00:06:37 2018 -0200
+
+    Edits: 1# Atualizando informacoes do datables js e fazendo novos imports dos buttons para gerar pdf, imprimir, etc.
+
+[33mcommit b57f522edb3e733c778b1abdfce4744e4c6b4f28[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Wed Jan 17 14:34:14 2018 -0200
+
+    Movendo imagens para pastas padroes e importando arquivos css e js do materialize local e nao mais via cdn
+
+[33mcommit 66e17c42b62c063e84ec025a6cf53c243ab95d83[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Wed Jan 17 04:03:04 2018 -0200
+
+    Mudancas:1 Troquei lugar da pasta statics, adicionei nela biblioteca js Datatable e alterei as urls do base.html. 2 Inseri datatable na lista de produtos..
+
+[33mcommit bd02d86e214c21df2c6c359272518067157f1fb7[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Tue Jan 16 13:53:55 2018 -0200
+
+    Comentando códigos de alterar senha na views core
+
+[33mcommit f4c9124172bea2ce3f0814e36cfd0fff876f3252[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Tue Jan 16 02:39:04 2018 -0200
+
+    Inserindo funcao para trocar de senha e retorno de erros
+
+[33mcommit ef5efb58c71c48ba4ed342a463f798d69c75cd5d[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Tue Jan 16 02:01:08 2018 -0200
+
+    Criado uma model User onde personalizei de acordo com os requisitos que eu quis para nao usar a Padrao do django, alem de atualizar todos os formularios que envolviam o model User.
+
+[33mcommit 4334c9c75f4415e2841bd4b464e50f161ab2eaeb[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Mon Jan 15 21:57:36 2018 -0200
+
+    Adicionando forma para retornar erros em alguns formularios como teste
+
+[33mcommit 1f49f538ae47ad0a3a52dff2773f6ee6cb54a025[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Mon Jan 15 14:59:12 2018 -0200
+
+    Adicionadno campo slug, e funcoes para acessar dados cadastrados atraves de atalhos
+
+[33mcommit 3d933d0ad95b3a6364109f2150308eac1c7b6796[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Mon Jan 15 02:41:54 2018 -0200
+
+    Adicionadno condição para caso não haver imagem cadastrada, utilizar uma padrão
+
+[33mcommit 64ade351ce1fa0ba4bced44ca837d8c06f6d67e3[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Sun Jan 14 19:54:10 2018 -0200
+
+    Adicionado menssagem quando usuario deslogar
+
+[33mcommit 8b1d5ed7f2437eddea531b98fb97010940fe29e8[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Sun Jan 14 18:18:00 2018 -0200
+
+    Adicionado botao ok para fechar toast e menssagens de sucesso nos formularios
+
+[33mcommit 28c5d1a344e1f456c2d50d97b22c466acb7c2507[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Sun Jan 14 16:18:43 2018 -0200
+
+    Adicionado menssagem de Usuario removido com sucesso na funcao para remover usuario
+
+[33mcommit c01d4fa516d216bc2649f6725c897fe5c3be8da7[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Sun Jan 14 15:26:24 2018 -0200
+
+    Adicionando mensagens de erro de login e permissão negada nos campos de usuario
+
+[33mcommit 0c328c5a7ed73ba89b21422904fcc9722941e300[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Sun Jan 14 00:38:46 2018 -0200
+
+    Reupando arquivos modificados
+
+[33mcommit 7bd365b10b0aa381d81340cd97c7da1f17155aa7[m
+Merge: c3fbe11 6142bde
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Sun Jan 14 00:37:32 2018 -0200
+
+    Merge branch 'develop' of https://github.com/itzmatheus/firstwebapplication into develop
+
+[33mcommit c3fbe11da439a594be774c387fd84383edacc55c[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Sun Jan 14 00:36:50 2018 -0200
+
+    Limpando repositorio
+
+[33mcommit 6142bdeb391eadc9db80e45cdf9a409f36d6d7ca[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Sun Jan 14 00:35:39 2018 -0200
+
+    Limpando repositorio
+
+[33mcommit cb8d68d3dd47e11dbda36ae32830a8f58ef8735a[m
+Author: Matheus Jose <matheusjoselfm@gmail.com>
+Date:   Fri Jan 12 21:52:40 2018 -0200
+
+    Subindo tudo
+
+[33mcommit a0fcf342ef00e22a12a42a2c53e10a999eb8c914[m
+Author: Matheus José <31101192+itzmatheus@users.noreply.github.com>
+Date:   Fri Jan 12 21:46:41 2018 -0200
+
+    Update .gitignore
+
+[33mcommit 2b47c188be84869128ebceeccafc0e16a2c50d0b[m
+Author: Matheus José <31101192+itzmatheus@users.noreply.github.com>
+Date:   Fri Jan 12 21:43:15 2018 -0200
+
+    Initial commit

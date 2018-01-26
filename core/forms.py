@@ -12,10 +12,41 @@ class UsuarioForm(forms.ModelForm):
         attrs={'class':'form-control'}), required=False)
     name = forms.CharField(label='Nome Completo', widget=forms.TextInput(
         attrs={'class':'form-control'}), required=False)
+    tipo_usuario = forms.CharField(label="Tipo de Usuário", widget=forms.TextInput(
+        attrs={'class':'form-control'}))
     password1 = forms.CharField(label='Senha', widget=forms.PasswordInput(
         attrs={'class':'form-control'}))
     password2 = forms.CharField(label='Senha', widget=forms.PasswordInput(
         attrs={'class':'form-control'}))
+
+    # Check that the telefone already exists
+    def clean_telefone(self):
+        telefone = self.cleaned_data.get("telefone") # Esse telefone
+        # O queryset vai ser o user.objects.filter com telefone informado pelo usuário
+        #Ele vai verificar em todos os usuários se já existe esse telefone cadastrado
+        queryset =  User.objects.filter(telefone=telefone)
+        if queryset.exists():
+            raise forms.ValidationError('Já existe um usuário com este telefone!')
+        return telefone
+    # Check that the username already exists
+    def clean_username(self):
+        username = self.cleaned_data.get("username") # Esse uusuário
+        # O queryset vai ser o user.objects.filter com usuário informado pelo usuário
+        #Ele vai verificar em todos os usuários se já existe esse telefone cadastrado
+        queryset =  User.objects.filter(username=username)
+        if queryset.exists():
+            raise forms.ValidationError('Já existe um usuário com este username!')
+        return username
+
+    # Check that the email already exists
+    def clean_email(self):
+        email = self.cleaned_data.get("email") # Esse email
+        # O queryset vai ser o user.objects.filter com email informado pelo usuário
+        #Ele vai verificar em todos os usuários se já existe esse telefone cadastrado
+        queryset =  User.objects.filter(email=email)
+        if queryset.exists():
+            raise forms.ValidationError('Já existe um usuário com este email!')
+        return email
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -35,7 +66,43 @@ class UsuarioForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'telefone','name', 'password1', 'password2']
+        fields = ['username', 'email', 'telefone','name','tipo_usuario', 'password1', 'password2']
+
+class UsuarioEditForm(forms.ModelForm):
+
+    # Check that the username already exists
+    def clean_username(self):
+        username = self.cleaned_data['username'] # Esse uusuário
+        # O queryset vai ser o user.objects.filter com usuário informado pelo usuário
+        #Ele vai verificar em todos os usuários exceto(.exclude) no usuário que está sendo alterado
+        queryset =  User.objects.filter(username=username).exclude(
+            pk=self.instance.pk)
+        if queryset.exists():
+            raise forms.ValidationError('Já existe um usuário com este username!')
+        return username
+    # Check that the telefone already exists
+    def clean_telefone(self):
+        telefone = self.cleaned_data['telefone'] # Esse telefone
+        # O queryset vai ser o user.objects.filter com telefone informado pelo usuário
+        #Ele vai verificar em todos os usuários exceto(.exclude) no usuário que está sendo alterado
+        queryset =  User.objects.filter(telefone=telefone).exclude(
+            pk=self.instance.pk)
+        if queryset.exists():
+            raise forms.ValidationError('Já existe um usuário com este telefone!')
+        return telefone
+    # Check that the email already exists
+    def clean_email(self):
+        email = self.cleaned_data['email'] # Esse email
+        # O queryset vai ser o user.objects.filter com email informado pelo usuário
+        #Ele vai verificar em todos os usuários exceto(.exclude) no usuário que está sendo alterado
+        queryset =  User.objects.filter(email=email).exclude(
+            pk=self.instance.pk)
+        if queryset.exists():
+            raise forms.ValidationError('Já existe um usuário com este email!')
+        return email
+    class Meta:
+        model = User
+        fields = ['username', 'email','telefone','name']
 
 class AlterarSenhaForm(forms.ModelForm):
     old_password = forms.CharField(label='Senha antiga', widget=forms.PasswordInput(

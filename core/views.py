@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from core.forms import UsuarioForm, AlterarSenhaForm
+from core.forms import UsuarioForm, AlterarSenhaForm, UsuarioEditForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import logout, authenticate, login
@@ -27,13 +27,17 @@ def cadastrar_usuario(request):
                 password = request.POST['password1']
                 tipo_usuario = request.POST['tipo_usuario'] #Este campo não salva, apenas serve para saber o tipo de usuário
                 telefone = request.POST['telefone']
-                if tipo_usuario == 'super_user':
-                    user = user = User.objects.create_user(username=username,email=email,password=password,name=name,telefone=telefone,is_active=True, is_staff=True, is_superuser=True)
-                elif tipo_usuario == 'funcionario':
-                    user = user = User.objects.create_user(username=username,email=email,password=password,name=name,telefone=telefone,is_active=True, is_staff=False, is_superuser=False)
-                messages.success(request, 'Usuário {} cadastrado com sucesso!'.format(username))
-                return redirect('index')
-        form = UsuarioForm()
+                try:
+                    if tipo_usuario == 'sup':
+                        user = User.objects.create_user(username=username,email=email,password=password,name=name,telefone=telefone,tipo_usuario=tipo_usuario,is_active=True, is_staff=True, is_superuser=True)
+                    elif tipo_usuario == 'fuc':
+                        user = User.objects.create_user(username=username,email=email,password=password,name=name,telefone=telefone,tipo_usuario=tipo_usuario,is_active=True, is_staff=False, is_superuser=False)
+                    messages.success(request, 'Usuário {} cadastrado com sucesso!'.format(form.cleaned_data['username']))
+                    return redirect('index')
+                except:
+                    return render(request, 'formularios/usuario/usuario_form.html')
+        else:
+            form = UsuarioForm()
     else:
         messages.error(request, 'Usuário {} não possui permissão para acessar essa página!'.format(user.username))
         return redirect('index')
@@ -57,15 +61,15 @@ def editar_usuario(request, pk):
     if user.is_superuser:
         usuario = get_object_or_404(User, pk=pk)
         if request.method == 'POST':
-            form = UsuarioForm(request.POST, instance=usuario)
+            form = UsuarioEditForm(request.POST, instance=usuario)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect('listar_usuarios')
+                return redirect('listar_usuarios')
             # else:
             #     return render(request, 'formularios/usuario/usuario_edit.html',
             #         {'form':form})
         else:
-            form = UsuarioForm(instance=usuario)
+            form = UsuarioEditForm(instance=usuario)
     else:
         messages.error(request, 'Usuário {} não possui permissão para acessar essa página!'.format(user.username))
         return redirect('index')
