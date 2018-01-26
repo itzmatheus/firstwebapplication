@@ -3,6 +3,10 @@ from django.db import models
 from django.contrib.auth.models import (AbstractBaseUser, PermissionsMixin,
 UserManager)
 from django.core import validators
+user_type = (
+    ('sup', 'gerente'),
+    ('fuc', 'funcionario'),
+)
 
 class User(AbstractBaseUser, PermissionsMixin):
 
@@ -10,9 +14,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     validators=[validators.RegexValidator(re.compile('^[\w.@+-]+$'),
     'Nome de usuário só pode conter letras, dígitos ou os seguintes caracteres: @/./+/-/_',
     'invalid')])
-    email = models.EmailField('E-Mail', blank=True, unique=True)
+    email = models.EmailField('E-Mail', blank=True, null=True, unique=True)
     telefone = models.CharField('Telefone', null=True, blank=True, unique=True, max_length=11)
     name = models.CharField('Nome completo', max_length=100, null=True, blank=True)
+    tipo_usuario = models.CharField('Tipo de usuário', max_length=3, choices=user_type )
     is_active = models.BooleanField('Está ativo?', blank=True, default=True)
     is_staff = models.BooleanField('É da equipe?', blank=True, default=False)
     date_joined = models.DateTimeField('Data de Entrada', auto_now_add=True)

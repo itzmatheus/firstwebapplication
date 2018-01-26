@@ -23,10 +23,12 @@
         <td>{{ usuario.email }}</td>
         <td>{{ usuario.telefone }}</td>
         <td>{{ usuario.username }}</td>
-        {% if usuario.is_superuser %}
-        <td>Gerente</td>
-        {% else %}
+         {% if usuario.tipo_usuario == 'sup' %}
+         <td>Gerente</td>
+        {% elif usuario.tipo_usuario == 'fuc' %}
         <td>Funcionário</td>
+        {% else %}
+        <td>Usuário sem posição</td>
         {% endif %}
         <td>
           <a href="{% url 'editar_usuario' pk=usuario.pk %}">

@@ -34,7 +34,7 @@
       <label for="{{form.name.id_for_label}}">Nome completo</label>
     </div>
     <div class="input-field">
-      <input type="email" name="email" id='id_email' maxlength="50" value="">
+      <input type="email"name="email" id='id_email' maxlength="50" value="">
       <label for="{{form.email.id_for_label}}">Email</label>
     </div>
     <div class="input-field">
@@ -42,23 +42,23 @@
       <label for="{{form.telefone.id_for_label}}">Telefone</label>
     </div>
     <div class="input-field col s6">
-      <input type="text" name="username" maxlength="30" id='id_username' value="">
+      <input type="text" name="username" required="" maxlength="30" id='id_username' value="">
       <label for="{{form.username.id_for_label}}">Username</label>
     </div>
     <div class="input-field col s6">
         <select id='id_tipo_usuario' required="" name="tipo_usuario">
           <option value="" selected disabled>Selecione o tipo de usuário</option>
-          <option value="super_user">Gerente</option>
-          <option value="funcionario">Funcionário</option>
+          <option value="sup">Gerente</option>
+          <option value="fuc">Funcionário</option>
         </select>
       <label for="{{form.tipo_usuario.id_for_label}}">Tipo de usuário</label>
     </div>
     <div class="input-field col s6">
-      <input type="password" name="password1" maxlength="30" id='id_password1' value="">
+      <input type="password" name="password1" required="" maxlength="30" id='id_password1' value="">
       <label for="{{form.password1.id_for_label}}">Senha</label>
     </div>
     <div class="input-field col s6">
-      <input type="password" name="password2" maxlength="30" id='id_password2' value="">
+      <input type="password" name="password2" required="" maxlength="30" id='id_password2' value="">
       <label for="{{form.password2.id_for_label}}">Confirme a senha</label>
     </div>
     </div>

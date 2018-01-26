@@ -27,13 +27,17 @@ def cadastrar_usuario(request):
                 password = request.POST['password1']
                 tipo_usuario = request.POST['tipo_usuario'] #Este campo não salva, apenas serve para saber o tipo de usuário
                 telefone = request.POST['telefone']
-                if tipo_usuario == 'super_user':
-                    user = user = User.objects.create_user(username=username,email=email,password=password,name=name,telefone=telefone,is_active=True, is_staff=True, is_superuser=True)
-                elif tipo_usuario == 'funcionario':
-                    user = user = User.objects.create_user(username=username,email=email,password=password,name=name,telefone=telefone,is_active=True, is_staff=False, is_superuser=False)
-                messages.success(request, 'Usuário {} cadastrado com sucesso!'.format(username))
-                return redirect('index')
-        form = UsuarioForm()
+                try:
+                    if tipo_usuario == 'sup':
+                        user = User.objects.create_user(username=username,email=email,password=password,name=name,telefone=telefone,tipo_usuario=tipo_usuario,is_active=True, is_staff=True, is_superuser=True)
+                    elif tipo_usuario == 'fuc':
+                        user = User.objects.create_user(username=username,email=email,password=password,name=name,telefone=telefone,tipo_usuario=tipo_usuario,is_active=True, is_staff=False, is_superuser=False)
+                    messages.success(request, 'Usuário {} cadastrado com sucesso!'.format(form.cleaned_data['username']))
+                    return redirect('index')
+                except:
+                    return render(request, 'formularios/usuario/usuario_form.html')
+        else:
+            form = UsuarioForm()
     else:
         messages.error(request, 'Usuário {} não possui permissão para acessar essa página!'.format(user.username))
         return redirect('index')
