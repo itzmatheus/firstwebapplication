@@ -24,9 +24,9 @@ class UsuarioForm(forms.ModelForm):
         telefone = self.cleaned_data.get("telefone") # Esse telefone
         # O queryset vai ser o user.objects.filter com telefone informado pelo usuário
         #Ele vai verificar em todos os usuários se já existe esse telefone cadastrado
-        queryset =  User.objects.filter(telefone=telefone)
+        queryset = User.objects.filter(telefone=telefone)
         if queryset.exists():
-            raise forms.ValidationError('Já existe um usuário com este telefone!')
+            raise forms.ValidationError('Usuário com este Telefone já existe.')
         return telefone
     # Check that the username already exists
     def clean_username(self):
@@ -35,7 +35,7 @@ class UsuarioForm(forms.ModelForm):
         #Ele vai verificar em todos os usuários se já existe esse telefone cadastrado
         queryset =  User.objects.filter(username=username)
         if queryset.exists():
-            raise forms.ValidationError('Já existe um usuário com este username!')
+            raise forms.ValidationError('Usuário com este Username já existe.')
         return username
 
     # Check that the email already exists
@@ -45,7 +45,7 @@ class UsuarioForm(forms.ModelForm):
         #Ele vai verificar em todos os usuários se já existe esse telefone cadastrado
         queryset =  User.objects.filter(email=email)
         if queryset.exists():
-            raise forms.ValidationError('Já existe um usuário com este email!')
+            raise forms.ValidationError('Usuário com este Email já existe.')
         return email
 
     def clean_password2(self):
