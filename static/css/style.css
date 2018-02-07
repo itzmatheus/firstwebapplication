@@ -1,0 +1,79 @@
+/* CSS Títulos */
+.header-title {
+  color: #616161;
+  font-family: inherit;
+}
+/*----------------------------------------
+    CSS do Plano de preço
+------------------------------------------*/
+.plans-container .collection {
+  border: none;
+}
+.plans-container .collection .collection-item {
+  border-bottom: none;
+  text-align: center;
+  font-size: 1.07rem;
+  line-height: 1.6em;
+}
+.plans-container .card .card-image {
+  position: relative;
+  width: 100%;
+}
+.plans-container .card .card-image .card-title {
+  position: relative;
+  font-size: 1.50rem;
+  line-height: 1.7em;
+  text-align: center;
+  width: 100%;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.1);
+}
+.plans-container .card .card-image .price {
+  position: relative;
+  font-size: 4rem;
+  line-height: 1.6em;
+  color: #fff;
+  font-weight: 300;
+  text-align: center;
+}
+.plans-container .card .card-image .price sup {
+  font-weight: 100;
+  font-size: 1.42rem;
+  line-height: 1.6em;
+  top: 0px;
+}
+.plans-container .card .card-image .price sub {
+  font-weight: 100;
+  font-size: 1.42rem;
+  line-height: 1.6em;
+  top: 0px;
+}
+.plans-container .card .card-image .price-desc {
+  text-align: center;
+  color: #fff;
+  padding-bottom: 10px;
+}
+.plans-container .card .card-content {
+  padding: 0;
+}
+/*
+@media screen and (min-width: 601px) {
+  .plans-container .card {
+    min-height: 550px;
+  }
+}*/
+/* end CSS Plano de preço */
+/* CSS Slides - Imagens responsivas */
+/* .slider .slides {
+background-color: transparent;
+margin: 0;
+}
+
+.slider .slides li img {
+height: 100%;
+width: 100%;
+background-position: center;
+background-size:100% auto;
+background-repeat: no-repeat;
+} */
