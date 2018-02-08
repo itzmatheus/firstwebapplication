@@ -66,7 +66,7 @@
          </ul>
        </div>
        <div class="card-action center-align">
-         <button class="waves-effect waves-light blue btn">CONTRATAR</button>
+          <a href="#assine"><button class="waves-effect waves-light blue btn">CONTRATAR</button></a>
        </div>
      </div>
    </article>
@@ -86,7 +86,7 @@
          </ul>
        </div>
        <div class="card-action center-align">
-        <button class="waves-effect waves-light red btn">CONTRATAR</button>
+          <a href="#assine"><button class="waves-effect waves-light red btn">CONTRATAR</button></a>
        </div>
      </div>
    </article>
@@ -106,7 +106,7 @@
          </ul>
        </div>
        <div class="card-action center-align">
-         <button class="waves-effect waves-light blue btn">CONTRATAR</button>
+          <a href="#assine"><button class="waves-effect waves-light blue btn">CONTRATAR</button></a>
        </div>
      </div>
    </article>
@@ -125,7 +125,7 @@
          </ul>
        </div>
        <div class="card-action center-align">
-         <button class="waves-effect waves-light red btn">CONTRATAR</button>
+          <a href="#assine"><button class="waves-effect waves-light red btn">CONTRATAR</button></a>
        </div>
      </div>
    </article>
@@ -134,15 +134,105 @@
  </div>
  <!-- End planos -->
 
-   <div class="col s12 ">
-     <div class="scrollspy" id="vantagens">
-     <br><br>
-      <div class="divider"></div>
-        <h3 class="header-title">VANTAGENS</h3>
-        <h5 class="card-title">VEJA ABAIXO AS VANTAGENS DE CONTRATAR A <b>POLYCLAR</b></h5>
+  <div class="row">
+     <div class="col s12 ">
+       <div class="scrollspy" id="vantagens">
         <br><br>
-        <i class="large material-icons">flash_on</i>Internet rápida e de qualidade!
+          <div class="divider"></div>
+            <h3 class="header-title">VANTAGENS</h3>
+            <h5 class="card-title">VEJA ABAIXO AS VANTAGENS DE CONTRATAR A <b>POLYCLAR</b>.</h5>
+              <br><br>
+                <div class="col s4">
+                  <div class="center promo promo-example">
+                    <i class="large material-icons">flash_on</i>
+                    <p class="promo-caption" style="font-size: 20px;">Internet com alta velocidade</p>
+                    <p class="light center" style="font-size: 18px;">Nossa internet possui <b>equipamentos de última geração</b>, estabelecendo
+                      uma <b>conexão</b> <b>firme</b> e <b>segura</b> de ponta-a-ponta.</p>
+                  </div>
+                </div>
+                <div class="col s4">
+                  <div class="center promo promo-example">
+                    <i class="large material-icons">group</i>
+                    <p class="promo-caption">User Experience Focused</p>
+                    <p class="light center" style="font-size: 18px;" >By utilizing elements and principles of Material Design, we were able to create a framework that focuses on User Experience.</p>
+                  </div>
+                </div>
+                <div class="col s4">
+                  <div class="center promo promo-example">
+                    <i class="large material-icons">settings</i>
+                    <p class="promo-caption">Easy to work with</p>
+                    <p class="light center" style="font-size: 18px;">We have provided detailed documentation as well as specific code examples to help new users get started.</p>
+                  </div>
+                </div>
       </div>
+    </div>
   </div>
+
+  <div class="row">
+      <div class="col s12 ">
+        <div class="scrollspy" id="assine">
+         <br><br>
+           <div class="divider"></div>
+             <h3 class="header-title">ASSINE JÁ!</h3>
+             <h5 class="card-title">PREENCHA O FORMULÁRIO ABAIXO E NOSSA EQUIPE ENTRARÁ
+               EM CONTATO COM VOCÊ!</h5>
+               <br><br>
+                <div class="card-panel z-depth-3 row">
+                  <form method="post">{% csrf_token %}
+                  <div class="row">
+                  <div class="input-field col s4">
+                     <input type="text" value="" name="name" id="id_name">
+                     <label for="{{form.name.id_for_label}}">Nome completo<span id="valNome" style="color:red">*</span></label>
+                  </div>
+                  <div class="input-field col s4">
+                      <input type="text" value="" name="telefone" id="id_telefone">
+                      <label for="{{form.telefone.id_for_label}}">Telefone<span id="valNome" style="color:red">*</span></label>
+                   </div>
+                   <div class="input-field col s4">
+                      <input type="email" value="" name="email" id="id_email">
+                      <label for="{{form.email.id_for_label}}">Email<span id="valNome" style="color:red">*</span></label>
+                   </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4">
+                        <input type="text" value="" name="endereco" id="id_endereco">
+                        <label for="{{form.endereco.id_for_label}}">Endereço<span id="valNome" style="color:red">*</span></label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input type="text" value="" name="cep" id="id_cep">
+                        <label for="{{form.cep.id_for_label}}">Cep<span id="valNome" style="color:red">*</span></label>
+                    </div>
+                    <div class="input-field col s4">
+                        <select name="plano" id="id_plano">
+                          <option value="" selected disabled>Selecione o plano</option>
+                          <option value="PL1">Plano de R$ 50,00</option>
+                          <option value="PL2">Plano de R$ 70,00</option>
+                          <option value="PL3">Plano de R$ 90,00</option>
+                          <option value="PL4">Plano de R$ 130,00</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="input-field col s4">
+                          <input type="text" value="" name="numero" id="id_numero">
+                          <label for="{{form.numero.id_for_label}}">Número<span id="valNome" style="color:red">*</span></label>
+                      </div>
+                      <div class="input-field col s4">
+                          <input type="text" value="" name="bairro" id="id_bairro">
+                          <label for="{{form.bairro.id_for_label}}">Bairro<span id="valNome" style="color:red">*</span></label>
+                      </div>
+                      <div class="input-field col s4">
+                          <input type="text" value="" name="complemento" id="id_complemento">
+                          <label for="{{form.complemento.id_for_label}}">Complemento<span id="valNome" style="color:red">*</span></label>
+                      </div>
+                      </div>
+                  </form>
+                </div>
+                <div class="center">
+                    <button type="submit" class="btn waves-effect red waves-light" name="action">ASSINAR</button>
+                    </div>
+                
+       </div>
+   </div>
 </div>
 {% endblock %}

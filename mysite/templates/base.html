@@ -37,7 +37,7 @@
       <li><a class="black-text" href="#planos">PLANOS</a></li>
       <li><a class="black-text" href="#vantagens">VANTAGENS</a></li>
       <li><a class="black-text" href="badges.html">CONTATO</a></li>
-      <li><a class="waves-effect red waves-light btn" href="#planos">Assine já!</a></li>
+      <li><a class="waves-effect red waves-light btn" href="#assine">Assine já!</a></li>
     </ul>
   </div>
 </nav>
@@ -47,6 +47,7 @@
     <li><a href="#slides">Início</a></li>
     <li><a href="#planos">Planos</a></li>
     <li><a href="#vantagens">Vantagens</a></li>
+    <li><a href="#assine">Assine já</a></li>
   </ul>
 </div>
 <main>
@@ -58,5 +59,21 @@
 
        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
        <script src="{% static 'js/app.js' %}"></script>
+       <script>
+         {% if messages %}
+            {% for message in messages %}
+              $(document).ready(function(){
+                // Função para aparecer o toast
+                var $toastContent = $('<span>{{ message }}</span>').add($('<button class="btn-flat toast-action" id="button_toast">Ok</button>'));
+                Materialize.toast($toastContent, 10000);
+                // Função para remover todos os toasts quando clicar no botão "Ok"
+                $('#button_toast').click(function(){
+                  Materialize.Toast.removeAll();
+                });
+              });
+            {% endfor %}
+         {% endif %}
+
+       </script>
 </body>
 </html>

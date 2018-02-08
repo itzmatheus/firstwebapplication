@@ -5,4 +5,5 @@ $(document).ready(function(){
   $('.scrollspy').scrollSpy({
     scrollOffset: -49
   });
+  $('select').material_select();
 });
